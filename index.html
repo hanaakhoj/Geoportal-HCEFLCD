@@ -194,7 +194,6 @@
 			// Fond de base : Normal et Sattelitaire
 			var OpenStreetMap = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
 	
-			// initialize the map on the "map" div with a given center and zoom
 			var map = L.map('map', {
 				layers: [OpenStreetMap],
 				center: [35.433360, -5.202342],
@@ -210,14 +209,41 @@
 				alert("Lat, Lon : " + e.latlng.lat + ", " + e.latlng.lng)
 			});
 
-			// Couches à partir de Geoserver (format WMS)
-			var decoupage_admin = L.tileLayer.wms("http://localhost:8060/geoserver/geoportail/wms", {
-				layers: 'geoportail:decoupage_administratif',
-				format: 'image/png',
-				transparent: true,
-			});
-			decoupage_admin.addTo(map);
-			//map.fitBounds(decoupage_admin.getBounds());
+			//Importer le découpage administratif sous format GeoJSON en utilisant le service WFS 
+			var rootUrl = 'http://localhost:8060/geoserver/geoportail/ows';
+
+			var defaultParameters = {
+				service: 'WFS',
+				version: '1.0.0',
+				request: 'GetFeature',
+				typeName: 'geoportail:decoupage_administratif',
+				outputFormat: 'text/javascript',
+				format_options: 'callback: getJson'
+
+			};
+
+			var parameters = L.Util.extend(defaultParameters);
+
+			var WFSLayer;
+			var ajax = $.ajax({
+				url : rootUrl + L.Util.getParamString(parameters),
+				dataType : 'jsonp',
+				jsonpCallback : 'getJson',
+				success : function (response) {
+					console.log(rootUrl + L.Util.getParamString(parameters));
+					WFSLayer =L.geoJson(response, {
+						style: function(feature) {
+								return {
+									color: '#e75025',
+									fillOpacity: 0
+									};
+						}
+					}).addTo(map);
+				}
+			})
+
+			// Animation des entités
+			
 
 			</script>
 <!-- END Java Script for this page -->

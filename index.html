@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		
+		<title>GÉOPORTAIL</title>
+		<meta name="description" content="Free Bootstrap 4 Admin Theme | Pike Admin">
+		<meta name="author" content="Pike Web Development - https://www.pikephp.com">
+
+		<!-- Favicon -->
+		<link rel="shortcut icon" href="assets/images/logo.png">
+
+		<!-- Bootstrap CSS -->
+		<link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+		
+		<!-- Font Awesome CSS -->
+		<link href="assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+		
+		<!-- Custom CSS -->
+		<link href="assets/css/style.css" rel="stylesheet" type="text/css" />
+
+		<!-- Leaflet Plugin -->
+		<link href="assets/plugins/leaflet/leaflet.css" rel="stylesheet" type="text/css" />
+		
+		<!-- Menu de navigation-->
+		<link href="assets/plugins/leaflet-navbar/Leaflet.NavBar.css" rel="stylesheet" type="text/css" />
+
+		<!-- zoom min-->
+		<link href="assets/plugins/leaflet-zoom-min/L.Control.ZoomMin.css" rel="stylesheet" type="text/css" />
+		
+
+		
+		<!-- BEGIN CSS for this page -->
+		<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css"/>
+		<!-- END CSS for this page -->
+
+		<style>
+			
+			#map {
+				height: 81vh;
+				width: 100vw;
+				
+			}
+
+		</style>
+		
+</head>
+
+<body class="adminbody">
+
+<div id="main">
+
+	<!-- top bar navigation -->
+	<div class="headerbar">
+
+		<!-- LOGO -->
+        <div class="headerbar-left">
+			<a href="index.html" class="logo"><img alt="Logo" src="assets/images/logo.png" /> <span>Eaux et forêts</span></a>
+        </div>
+
+        <nav class="navbar-custom">
+			<ul class="list-inline menu-left mb-0">
+				<li class="float-left">
+					<button class="button-menu-mobile open-left">
+						<i class="fa fa-fw fa-bars"></i>
+					</button>
+				</li>                        
+			</ul>
+        </nav>
+
+	</div>
+	<!-- End Navigation -->
+	
+ 
+	<!-- Left Sidebar -->
+	<div class="left main-sidebar">
+	
+		<div class="sidebar-inner leftscroll">
+
+			<div id="sidebar-menu">
+        
+			<ul>
+
+					<li class="submenu">
+						<a class="active" href="index.html"><i class="fa fa-fw fa-bars"></i><span> TABLEAU DE BORD </span> </a>
+                    </li>
+
+					<li class="submenu">
+                        <a href="charts.html"><i class="fa fa-fw fa-area-chart"></i><span> Recherche par coordonnées </span> </a>
+                    </li>
+					
+					<li class="submenu">
+                        <a href="#"><i class="fa fa-fw fa-table"></i> <span> Filtre </span> <span class="menu-arrow"></span></a>
+							<ul class="list-unstyled">
+								<li><a href="#">EX 1</a></li>
+                                <li><a href="#">EX 2</a></li>
+                                <li><a href="#">EX 3</a></li>
+							</ul>
+                    </li>
+										
+                    <li class="submenu">
+                        <a href="#"><i class="fa fa-fw fa-tv"></i> <span> Télédétection </span> <span class="menu-arrow"></span></a>
+                            <ul class="list-unstyled">
+                                <li><a href="#">EX 1</a></li>
+                                <li><a href="#">EX 2</a></li>
+                                <li><a href="#">EX 3</a></li>
+                            </ul>
+                    </li>
+            </ul>
+
+            <div class="clearfix"></div>
+
+			</div>
+        
+			<div class="clearfix"></div>
+
+		</div>
+
+	</div>
+	<!-- End Sidebar -->
+
+
+    <div class="content-page">
+	
+		<!-- Start content -->
+        <div class="content">
+            
+			<div class="container-fluid">
+					
+				<div class="row">
+					<div class="col-xl-12">
+						<div class="breadcrumb-holder">
+							<h1 class="main-title float-left">TABLEAU DE BORD</h1>
+							<ol class="breadcrumb float-right">
+								<li class="breadcrumb-item">ACCEUIL</li>
+								<li class="breadcrumb-item active">TABLEAU DE BORD</li>
+							</ol>
+							<div class="clearfix"></div>
+						</div>
+					</div>
+				</div>	
+
+				<div class="row">
+					<div id="map" ></div>
+				</div>
+				
+				
+									
+			</div>
+
+		</div>
+		<!-- END content -->
+
+    </div>
+	<!-- END content-page -->
+    
+	<footer class="footer">
+		<span class="text-right">
+		2019 &copy; <a target="_blank" href="http://www.eauxetforets.gov.ma/fr/index.aspx">Haut Commissariat aux Eaux et Forêts et à la Lutte Contre la Désertification	
+		</a>
+		</span>
+	</footer>
+
+</div>
+<!-- END main -->
+
+<script src="assets/plugins/leaflet/leaflet.js"></script>
+<script src="assets/plugins/leaflet-navbar/Leaflet.NavBar.js"></script>
+<script src="assets/plugins/leaflet-zoom-min/L.Control.ZoomMin.js"></script>
+<script src="assets/js/modernizr.min.js"></script>
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/moment.min.js"></script>
+		
+<script src="assets/js/popper.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+
+<script src="assets/js/detect.js"></script>
+<script src="assets/js/fastclick.js"></script>
+<script src="assets/js/jquery.blockUI.js"></script>
+<script src="assets/js/jquery.nicescroll.js"></script>
+
+<!-- App js -->
+<script src="assets/js/pikeadmin.js"></script>
+	
+
+	<script>
+		$(document).ready(function() {
+			
+		} );		
+	</script>
+	
+	<script>
+			// Fond de base : Normal et Sattelitaire
+			var OpenStreetMap = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
+	
+			// initialize the map on the "map" div with a given center and zoom
+			var map = L.map('map', {
+				layers: [OpenStreetMap],
+				center: [35.433360, -5.202342],
+				zoom: 9
+			});
+			//Afficher la barre d'échelle
+			L.control.scale().addTo(map);
+			
+			//Ajouter le menu de navigation : retour à la carte de base (Tanger) 
+			L.control.navbar({position: 'topleft'}).addTo(map);
+
+			map.on('click', function(e) {
+				alert("Lat, Lon : " + e.latlng.lat + ", " + e.latlng.lng)
+			});
+
+			// Couches à partir de Geoserver (format WMS)
+			var decoupage_admin = L.tileLayer.wms("http://localhost:8060/geoserver/geoportail/wms", {
+				layers: 'geoportail:decoupage_administratif',
+				format: 'image/png',
+				transparent: true,
+			});
+			decoupage_admin.addTo(map);
+			//map.fitBounds(decoupage_admin.getBounds());
+
+			</script>
+<!-- END Java Script for this page -->
+
+</body>
+</html>

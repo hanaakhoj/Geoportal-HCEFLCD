@@ -1,0 +1,12 @@
+/* http://commons.wikimedia.org/wiki/File:Magnifying_glass_icon.svg */
+.leaflet-control-magnifying-glass {
+    position: relative;
+}
+
+.leaflet-control-magnifying-glass::before { 
+    /*background-image: url(magnifying-glass-icon.png); */
+    font-family: "Font Awesome 5 Free"; 
+    font-weight: 900; 
+    content: "\f06e";
+      
+}

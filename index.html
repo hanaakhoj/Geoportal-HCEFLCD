@@ -32,7 +32,9 @@
 		
 		<!-- BEGIN CSS for this page -->
 		<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css"/>
-		<!-- END CSS for this page -->
+
+		<link href="assets/plugins/Leaflet.MagnifyingGlass/leaflet.magnifyingglass.css" rel="stylesheet" type="text/css"  />
+    	<link rel="stylesheet" href="assets/css/Control.MagnifyingGlass.css" />
 
 		<style>
 			
@@ -176,6 +178,10 @@
 <script src="assets/plugins/leaflet/leaflet.js"></script>
 <script src="assets/plugins/leaflet-navbar/Leaflet.NavBar.js"></script>
 <script src="assets/plugins/leaflet-zoom-min/L.Control.ZoomMin.js"></script>
+
+<script src="assets/plugins/Leaflet.MagnifyingGlass/leaflet.magnifyingglass.js"></script>
+<script src="assets/js/Control.MagnifyingGlass.js"></script>
+
 <script src="assets/js/modernizr.min.js"></script>
 <script src="assets/js/jquery.min.js"></script>
 <script src="assets/js/moment.min.js"></script>
@@ -201,6 +207,7 @@
 	<script>
 			// Fond de base : Normal et Sattelitaire
 			var basemap = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}');
+			var glass_map=L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}');
 	
 			var map = L.map('map', {
 				layers: [basemap],
@@ -212,10 +219,18 @@
 			
 			//Ajouter le menu de navigation : retour à la carte de base (Tanger) 
 			L.control.navbar({position: 'topleft'}).addTo(map);
-
+			/*
 			map.on('click', function(e) {
-				alert("Lat, Lon : " + e.latlng.lat + ", " + e.latlng.lng)
+				var popup = L.popup();
+				//alert("Lat, Lon : " + e.latlng.lat + ", " + e.latlng.lng)
+				popup.setLatLng(e.latlng)
+				.setContent("Lat, Lon : " + e.latlng.lat + ", " + e.latlng.lng)
+				.openOn(map);
+				popup.setLatLng(e.latlng)
+				.setContent("Lat, Lon : " + e.latlng.lat + ", " + e.latlng.lng)
+				.openOn(map);
 			});
+			*/
 
 			// Animation des entités
 			
@@ -306,6 +321,16 @@
 			};
 
 			info.addTo(map);
+
+			// La loupe 
+			var magnifyingGlass = L.magnifyingGlass({
+				zoomOffset: 3,
+				layers: [glass_map]
+			});
+
+			L.control.magnifyingglass(magnifyingGlass, {
+				forceSeparateButton: true
+			}).addTo(map);
 
 			
 			</script>

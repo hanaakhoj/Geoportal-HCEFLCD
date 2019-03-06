@@ -16,6 +16,7 @@
 		
 		<!-- Font Awesome CSS -->
 		<link href="assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 		
 		<!-- Custom CSS -->
 		<link href="assets/css/style.css" rel="stylesheet" type="text/css" />
@@ -29,8 +30,6 @@
 		<!-- zoom min-->
 		<link href="assets/plugins/leaflet-zoom-min/L.Control.ZoomMin.css" rel="stylesheet" type="text/css" />
 		
-
-		
 		<!-- BEGIN CSS for this page -->
 		<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css"/>
 		<!-- END CSS for this page -->
@@ -41,6 +40,19 @@
 				height: 81vh;
 				width: 100vw;
 				
+			}
+
+			.info {
+				padding: 6px 8px;
+				font: 14px/16px Arial, Helvetica, sans-serif;
+				background: white;
+				background: rgba(255,255,255,0.8);
+				box-shadow: 0 0 15px rgba(0,0,0,0.2);
+				border-radius: 5px;
+			}
+			.info h4 {
+				margin: 0 0 5px;
+				color: #777;
 			}
 
 		</style>
@@ -83,29 +95,25 @@
 			<ul>
 
 					<li class="submenu">
-						<a class="active" href="index.html"><i class="fa fa-fw fa-bars"></i><span> TABLEAU DE BORD </span> </a>
+						<a class="active" href="index.html"><i class="fas fa-map-marked-alt"></i></i><span> Découpage administratif </span> </a>
                     </li>
 
 					<li class="submenu">
-                        <a href="charts.html"><i class="fa fa-fw fa-area-chart"></i><span> Recherche par coordonnées </span> </a>
+						<a href="#"><i class="fab fa-envira"></i><span> Couvert Végétal </span> <span class="menu-arrow"></span> </a>
+						<ul class="list-unstyled">
+							<li><a href="#">EX 1</a></li>
+							<li><a href="#">EX 2</a></li>
+							<li><a href="#">EX 3</a></li>
+						</ul>
                     </li>
 					
 					<li class="submenu">
-                        <a href="#"><i class="fa fa-fw fa-table"></i> <span> Filtre </span> <span class="menu-arrow"></span></a>
+                        <a href="#"><i class="fa fa-fw fa-table"></i> <span> Glissement Terrain &nbsp;  </span> <span class="menu-arrow"></span></a>
 							<ul class="list-unstyled">
 								<li><a href="#">EX 1</a></li>
                                 <li><a href="#">EX 2</a></li>
                                 <li><a href="#">EX 3</a></li>
 							</ul>
-                    </li>
-										
-                    <li class="submenu">
-                        <a href="#"><i class="fa fa-fw fa-tv"></i> <span> Télédétection </span> <span class="menu-arrow"></span></a>
-                            <ul class="list-unstyled">
-                                <li><a href="#">EX 1</a></li>
-                                <li><a href="#">EX 2</a></li>
-                                <li><a href="#">EX 3</a></li>
-                            </ul>
                     </li>
             </ul>
 
@@ -131,10 +139,10 @@
 				<div class="row">
 					<div class="col-xl-12">
 						<div class="breadcrumb-holder">
-							<h1 class="main-title float-left">TABLEAU DE BORD</h1>
+							<h1 class="main-title float-left">DECOUPAGE ADMINISTRATIF</h1>
 							<ol class="breadcrumb float-right">
 								<li class="breadcrumb-item">ACCEUIL</li>
-								<li class="breadcrumb-item active">TABLEAU DE BORD</li>
+								<li class="breadcrumb-item active">DECOUPAGE ADMINISTRATIF</li>
 							</ol>
 							<div class="clearfix"></div>
 						</div>
@@ -192,10 +200,10 @@
 	
 	<script>
 			// Fond de base : Normal et Sattelitaire
-			var OpenStreetMap = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
+			var basemap = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}');
 	
 			var map = L.map('map', {
-				layers: [OpenStreetMap],
+				layers: [basemap],
 				center: [35.433360, -5.202342],
 				zoom: 9
 			});
@@ -208,6 +216,42 @@
 			map.on('click', function(e) {
 				alert("Lat, Lon : " + e.latlng.lat + ", " + e.latlng.lng)
 			});
+
+			// Animation des entités
+			
+			function highlightFeature(e) {
+				var layer = e.target;
+
+				layer.setStyle({
+					weight: 5,
+					color: '#FF0000',
+					dashArray: '',
+					fillOpacity: 0
+				});
+
+				if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+					layer.bringToFront();
+				}
+
+				info.update(layer.feature.properties);
+			}
+
+			function resetHighlight(e) {
+				WFSLayer.resetStyle(e.target);
+				info.update();
+			}
+
+			function zoomToFeature(e) {
+				map.fitBounds(e.target.getBounds());
+			}
+
+			function onEachFeature(feature, layer) {
+				layer.on({
+					mouseover: highlightFeature,
+					mouseout: resetHighlight,
+					click: zoomToFeature
+				});
+			}
 
 			//Importer le découpage administratif sous format GeoJSON en utilisant le service WFS 
 			var rootUrl = 'http://localhost:8060/geoserver/geoportail/ows';
@@ -234,17 +278,36 @@
 					WFSLayer =L.geoJson(response, {
 						style: function(feature) {
 								return {
-									color: '#e75025',
+									color: '#fff',
+									weight: 2,
+        							opacity: 1,
+									dashArray: '3',
 									fillOpacity: 0
 									};
-						}
+						},
+						onEachFeature: onEachFeature
 					}).addTo(map);
 				}
-			})
+			});
 
-			// Animation des entités
+			var info = L.control();
+
+			info.onAdd = function (map) {
+				this._div = L.DomUtil.create('div', 'info'); // create a div with a class "info"
+				this.update();
+				return this._div;
+			};
+
+			// method that we will use to update the control based on feature properties passed
+			info.update = function (props) {
+				this._div.innerHTML = '<h6>Informations</h6>' +  (props ?
+					'<b>' + props.type + '</b><br />' + props.nom
+					: 'Survoler une commune');
+			};
+
+			info.addTo(map);
+
 			
-
 			</script>
 <!-- END Java Script for this page -->
 

@@ -34,7 +34,16 @@
 		<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css"/>
 
 		<link href="assets/plugins/Leaflet.MagnifyingGlass/leaflet.magnifyingglass.css" rel="stylesheet" type="text/css"  />
-    	<link rel="stylesheet" href="assets/css/Control.MagnifyingGlass.css" />
+		<link rel="stylesheet" href="assets/css/Control.MagnifyingGlass.css" />
+		
+		<!--Mouse Position-->
+		<link rel="stylesheet" href="assets/plugins/libs/L.Control.MousePosition.css"/>
+
+		<!--Localisation-->
+		<link rel="stylesheet" href="assets/plugins/libs/L.Control.Locate.min.css"/>
+		
+		<link rel="stylesheet" href="assets/plugins/libs/Control.OSMGeocoder.css"/>
+
 
 		<style>
 			
@@ -178,6 +187,9 @@
 <script src="assets/plugins/leaflet/leaflet.js"></script>
 <script src="assets/plugins/leaflet-navbar/Leaflet.NavBar.js"></script>
 <script src="assets/plugins/leaflet-zoom-min/L.Control.ZoomMin.js"></script>
+<script src="assets/plugins/libs/L.Control.Locate.js"></script> 		
+<script src="assets/plugins/libs/L.Control.MousePosition.js"></script>
+<script src="assets/plugins/libs/Control.OSMGeocoder.js"></script>
 
 <script src="assets/plugins/Leaflet.MagnifyingGlass/leaflet.magnifyingglass.js"></script>
 <script src="assets/js/Control.MagnifyingGlass.js"></script>
@@ -219,6 +231,12 @@
 			
 			//Ajouter le menu de navigation : retour à la carte de base (Tanger) 
 			L.control.navbar({position: 'topleft'}).addTo(map);
+
+			///AJOUTEZ LA POSITION DE LA SOURIS À LA CARTE
+			L.control.mousePosition().addTo(map);
+			
+			//LOCALISATION
+			L.control.locate().addTo(map);
 			/*
 			map.on('click', function(e) {
 				var popup = L.popup();

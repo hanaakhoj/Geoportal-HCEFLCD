@@ -24,25 +24,27 @@
 		<!-- Leaflet Plugin -->
 		<link href="assets/plugins/leaflet/leaflet.css" rel="stylesheet" type="text/css" />
 		
-		<!-- Menu de navigation-->
+		<!-- Menu de navigation (Leaflet)-->
 		<link href="assets/plugins/leaflet-navbar/Leaflet.NavBar.css" rel="stylesheet" type="text/css" />
 
 		<!-- zoom min-->
 		<link href="assets/plugins/leaflet-zoom-min/L.Control.ZoomMin.css" rel="stylesheet" type="text/css" />
-		
-		<!-- BEGIN CSS for this page -->
-		<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css"/>
 
 		<link href="assets/plugins/Leaflet.MagnifyingGlass/leaflet.magnifyingglass.css" rel="stylesheet" type="text/css"  />
-		<link rel="stylesheet" href="assets/css/Control.MagnifyingGlass.css" />
-		
+        <link rel="stylesheet" href="assets/css/Control.MagnifyingGlass.css" />
+        
+        <!--Minimap (Overview)-->
+        <link rel="stylesheet" href="assets/plugins/leaflet.layerscontrol-minimap/control.layers.minimap.css">
+		<link rel="stylesheet" href="assets/plugins/Leaflet-MiniMap/src/Control.MiniMap.css">
+        
+        <!-- Load Esri Leaflet Geocoder from CDN -->
+		<link rel="stylesheet" href="assets/plugins/leaflet-esri/dist/esri-leaflet-geocoder.css">
+
 		<!--Mouse Position-->
 		<link rel="stylesheet" href="assets/plugins/libs/L.Control.MousePosition.css"/>
 
 		<!--Localisation-->
-		<link rel="stylesheet" href="assets/plugins/libs/L.Control.Locate.min.css"/>
-		
-        <link rel="stylesheet" href="assets/plugins/libs/Control.OSMGeocoder.css"/>
+        <link rel="stylesheet" href="assets/plugins/libs/L.Control.Locate.min.css"/>
         
         <!-- Context Menu -->
         <link rel="stylesheet" href="assets/plugins/libs/leaflet.contextmenu.css"/>
@@ -102,9 +104,7 @@
 	
 			<!-- Start content -->
 			<div class="content">
-				
 				<div class="container-fluid">
-						
 					<div class="row">
 						<div class="col-xl-12">
 							<div class="breadcrumb-holder">
@@ -120,15 +120,10 @@
 	
 					<div class="row">
 						<div id="map" ></div>
-					</div>
-					
-					
-										
+					</div>			
 				</div>
-	
 			</div>
 			<!-- END content -->
-	
 		</div>
 		<!-- END content-page -->
 		
@@ -139,37 +134,32 @@
 
 			<div id="sidebar-menu">
         
-			<ul>
-					<li class="submenu">
-							<a href="charts.html"><i class="fa fa-fw fa-area-chart"></i><span>TABLEAU DE BORD</span> </a>
-					</li>
-
-					<li class="submenu">
-						<a class="active" href="index.html"><i class="fas fa-map-marked-alt"></i></i><span> Découpage administratif </span> </a>
+                <ul>
+                    <li class="submenu">
+                            <a href="charts.html"><i class="fa fa-fw fa-area-chart"></i><span>Tableau de bord</span> </a>
                     </li>
 
-					<li class="">
-						<a href="#"><i class="fab fa-envira"></i><span> Couvert Végétal &nbsp;</span> <span class="selected"></span></a>
+                    <li class="submenu">
+                        <a class="active" href="index.html"><i class="fas fa-map-marked-alt"></i></i><span> Découpage administratif </span> </a>
                     </li>
-					
-					<li class="">
-						<a href="#"><i class="fas fa-mountain"></i><span id="glissTerrain"> Glissement Terrain &nbsp;  </span>
-						 <span class="selected"></span></a>
+
+                    <li class="">
+                        <a href="#"><i class="fab fa-envira"></i><span> Couvert Végétal &nbsp;</span> <span class="selected"></span></a>
                     </li>
-            </ul>
+                    
+                    <li class="">
+                        <a href="#"><i class="fas fa-mountain"></i><span id="glissTerrain"> Glissement Terrain &nbsp;  </span>
+                        <span class="selected"></span></a>
+                    </li>
+                </ul>
 
-            <div class="clearfix"></div>
-
+                <div class="clearfix"></div>
 			</div>
-        
 			<div class="clearfix"></div>
-
 		</div>
 
 	</div>
 	<!-- End Sidebar -->
-
-
 
 	<!-- SECTION TABLEAU DE BORD -->
 	<div id="sectionTabBord"></div>
@@ -187,19 +177,30 @@
 <script src="assets/js/jquery.min.js"></script>
 <script src="assets/js/jquery.blockUI.js"></script>
 <script src="assets/js/jquery.nicescroll.js"></script>
+
 <script src="assets/plugins/leaflet/leaflet.js"></script>
+
 <script src="assets/plugins/leaflet-navbar/Leaflet.NavBar.js"></script>
+
 <script src="assets/plugins/leaflet-zoom-min/L.Control.ZoomMin.js"></script>
-<script src="assets/plugins/libs/L.Control.Locate.js"></script> 		
+
+
+<script src="assets/plugins/Leaflet-MiniMap/src/Control.MiniMap.js"></script>
+
+<!-- Esri Leaflet JS  -->
+<script src="assets/plugins/leaflet-esri/dist/esri-leaflet.js"></script>
+
+<!-- Esri Leaflet Geocoder -->
+<script src="assets/plugins/leaflet-esri/dist/esri-leaflet-geocoder.js"></script>
+<script src="assets/plugins/leaflet.layerscontrol-minimap/L.Control.Layers.Minimap.js"></script>
+
+<script src="assets/plugins/libs/L.Control.Locate.js"></script> 
+
 <script src="assets/plugins/libs/L.Control.MousePosition.js"></script>
-<script src="assets/plugins/libs/Control.OSMGeocoder.js"></script>
+
 <script src="assets/plugins/Leaflet.MagnifyingGlass/leaflet.magnifyingglass.js"></script>
 <script src="assets/js/Control.MagnifyingGlass.js"></script>
 <script src="assets/js/modernizr.min.js"></script>
-
-<!-- SCRIPT DE MENU CLIQUE DROIT 
-<script src="assets/js/cliqueDroit/menuCliqueDroit.js"></script>-->
-<!-- /SCRIPT DE MENU CLIQUE DROIT -->
 
 <script src="assets/js/moment.min.js"></script>
 		
@@ -234,13 +235,9 @@
                 location.reload();
             }
 
-            // Fond de base : Normal et Sattelitaire
-            var basemap = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}');
-            var glass_map=L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}');
-    
+            // Initialisation de la carte avec un menu de click droit
             var map = L.map('map', {
-                layers: [basemap],
-                center: [35.433360, -5.202342],
+                center: [35.431879, -5.201654],
                 zoom: 9,
                 contextmenu : true,
                 contextmenuWidth : 150,
@@ -282,32 +279,54 @@
                 
                 }]
             });
+            //AJOUTEZ LA POSITION DE LA SOURIS À LA CARTE
+            L.control.mousePosition({position: 'bottomleft'}).addTo(map);
+
             //Afficher la barre d'échelle
             L.control.scale().addTo(map);
             
             //Ajouter le menu de navigation : retour à la carte de base (Tanger) 
             L.control.navbar({position: 'topleft'}).addTo(map);
 
-            ///AJOUTEZ LA POSITION DE LA SOURIS À LA CARTE
-            L.control.mousePosition().addTo(map);
-            
             //LOCALISATION
             L.control.locate().addTo(map);
-            /*
-            map.on('click', function(e) {
-                var popup = L.popup();
-                //alert("Lat, Lon : " + e.latlng.lat + ", " + e.latlng.lng)
-                popup.setLatLng(e.latlng)
-                .setContent("Lat, Lon : " + e.latlng.lat + ", " + e.latlng.lng)
-                .openOn(map);
-                popup.setLatLng(e.latlng)
-                .setContent("Lat, Lon : " + e.latlng.lat + ", " + e.latlng.lng)
-                .openOn(map);
-            });
-            */
+
+            //Base maps toggle
+			var baselayers = {
+                'EsriWorldImagery': L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+                    attribution: 'Tiles &copy;<a href="https://www.esri.com/en-us/homem">ESRI</a>'
+                }),
+
+                'OpenStreetMap': L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    attribution: '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a>'
+                })
+            };
+
+            var overlays;
+            var layersControl = L.control.layers.minimap(baselayers, overlays ,{
+            /*collapsed: false,*/
+                position: 'topleft',
+                topPadding: 10,
+                bottomPadding: 40,
+                overlayBackgroundLayer: L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+                    attribution: 'Tiles &copy;<a href="https://www.esri.com/en-us/homem">ESRI</a>'})
+            }).addTo(map);
+
+            var filter = function () {
+                var hash = window.location.hash;
+                var filterIndex = hash.indexOf('filter=');
+                if (filterIndex !== -1) {
+                    var filterString = hash.substr(filterIndex + 7).trim();
+                    layersControl.filter(filterString);
+                }
+            };
+
+            baselayers.EsriWorldImagery.addTo(map);
+
+            L.DomEvent.on(window, 'hashchange', filter);
+            filter();
 
             // Animation des entités
-            
             function highlightFeature(e) {
                 var layer = e.target;
 
@@ -343,13 +362,13 @@
             }
 
             //Importer le découpage administratif sous format GeoJSON en utilisant le service WFS 
-            var rootUrl = 'http://localhost:8090/geoserver/decoupage_administratif/ows';
+            var rootUrl = 'http://localhost:8060/geoserver/geoportail/ows';
 
             var defaultParameters = {
                 service: 'WFS',
                 version: '1.0.0',
                 request: 'GetFeature',
-                typeName: 'decoupage_administratif:decoupage_administratif_reprojected',
+                typeName: 'geoportail:decoupage_administratif',
                 outputFormat: 'text/javascript',
                 format_options: 'callback: getJson'
 
@@ -397,6 +416,10 @@
             info.addTo(map);
 
             // La loupe 
+
+            // Fond de base pour la loupe: Normal et Sattelitaire
+            var glass_map=L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}');
+
             var magnifyingGlass = L.magnifyingGlass({
                 zoomOffset: 3,
                 layers: [glass_map]
@@ -405,6 +428,50 @@
             L.control.magnifyingglass(magnifyingGlass, {
                 forceSeparateButton: true
             }).addTo(map);
+
+            // Overview (Mini map)
+
+			var baselayers_minimap = {
+				EsriWorldImagery: L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+					attribution: 'Tiles &copy;<a href="https://www.esri.com/en-us/homem">ESRI</a>'
+				}),
+				OpenStreetMap: L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+					attribution: '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a>'
+				})
+			};
+
+			var rect1 = {color: "#b6dc3b", weight: 3};
+			var rect2 = {color: "#6194c1", weight: 1, opacity:0, fillOpacity:0};
+
+			var miniMap = new L.Control.MiniMap(baselayers_minimap.EsriWorldImagery, { toggleDisplay: true, collapsedWidth: 27, collapsedHeight: 27, aimingRectOptions : rect1, shadowRectOptions: rect2 }).addTo(map);
+			
+			map.on('baselayerchange', function (e) {
+				miniMap.changeLayer(baselayers_minimap[e.name]);
+			})
+
+            // Recherche
+			var arcgisOnline = L.esri.Geocoding.arcgisOnlineProvider();
+
+            var searchControl = L.esri.Geocoding.geosearch({
+                providers: [
+                arcgisOnline,
+                L.esri.Geocoding.mapServiceProvider({
+                    label: 'States and Counties',
+                    url: 'https://sampleserver6.arcgisonline.com/arcgis/rest/services/Census/MapServer',
+                    layers: [2, 3],
+                    searchFields: ['NAME', 'STATE_NAME']
+                })
+                ]
+            }).addTo(map);	
+
+            var results = L.layerGroup().addTo(map);
+
+            searchControl.on('results', function(data){
+                results.clearLayers();
+                for (var i = data.results.length - 1; i >= 0; i--) {
+                results.addLayer(L.marker(data.results[i].latlng));
+                }
+            });
 </script>
 
 <!-- END Java Script for this page -->

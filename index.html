@@ -42,7 +42,10 @@
 		<!--Localisation-->
 		<link rel="stylesheet" href="assets/plugins/libs/L.Control.Locate.min.css"/>
 		
-		<link rel="stylesheet" href="assets/plugins/libs/Control.OSMGeocoder.css"/>
+        <link rel="stylesheet" href="assets/plugins/libs/Control.OSMGeocoder.css"/>
+        
+        <!-- Context Menu -->
+        <link rel="stylesheet" href="assets/plugins/libs/leaflet.contextmenu.css"/>
 
 
 		<style>
@@ -190,15 +193,13 @@
 <script src="assets/plugins/libs/L.Control.Locate.js"></script> 		
 <script src="assets/plugins/libs/L.Control.MousePosition.js"></script>
 <script src="assets/plugins/libs/Control.OSMGeocoder.js"></script>
-<!-- SCRIPT DE LA GESTION GRAPHIQUE DES MENUS -->
-<script src="assets/js/GestionDesModulesEtGraphiques/gestionGraphiqueDesMenus.js"></script>
-<!-- /SCRIPT DE LA GESTION GRAPHIQUE DES MENUS -->
-<!-- SCRIPT DE LA GESTION DES MODULES -->
-<script src="assets/js/GestionDesModulesEtGraphiques/GestionDesModules.js"></script>
-<!-- /SCRIPT DE LA GESTION DES MODULES -->
 <script src="assets/plugins/Leaflet.MagnifyingGlass/leaflet.magnifyingglass.js"></script>
 <script src="assets/js/Control.MagnifyingGlass.js"></script>
 <script src="assets/js/modernizr.min.js"></script>
+
+<!-- SCRIPT DE MENU CLIQUE DROIT 
+<script src="assets/js/cliqueDroit/menuCliqueDroit.js"></script>-->
+<!-- /SCRIPT DE MENU CLIQUE DROIT -->
 
 <script src="assets/js/moment.min.js"></script>
 		
@@ -207,19 +208,79 @@
 
 <script src="assets/js/detect.js"></script>
 <script src="assets/js/fastclick.js"></script>
-
+<script src="assets/plugins/libs/leaflet.contextmenu.js"></script>
 
 <!-- App js -->
 <script src="assets/js/pikeadmin.js"></script>
 	<script>
-// Fond de base : Normal et Sattelitaire
+            
+            function showCoordinates (e) {
+                alert(e.latlng);
+            }
+
+            function centerMap (e) {
+                map.panTo(e.latlng);
+            }
+
+            function zoomIn (e) {
+                map.zoomIn();
+            }
+
+            function zoomOut (e) {
+                map.zoomOut();
+            }
+
+            function reloadMap(obj) {
+                location.reload();
+            }
+
+            // Fond de base : Normal et Sattelitaire
             var basemap = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}');
             var glass_map=L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}');
     
             var map = L.map('map', {
                 layers: [basemap],
                 center: [35.433360, -5.202342],
-                zoom: 9
+                zoom: 9,
+                contextmenu : true,
+                contextmenuWidth : 150,
+                contextmenuItems : [{
+                    text: 'GT à proximité',
+                    classname: 'bold',
+                    icon: 'assets/images/glissementTerrain.png',
+                
+                },
+                {
+                    text: 'Show coordinates',
+                    classname : 'bold',
+                    icon: 'assets/images/localisation.png',
+                    callback: showCoordinates
+                },
+                {
+                    text: 'Centrer la carte ici',
+                    classname: 'bold',
+                    icon: 'assets/images/center.png',
+                    callback: centerMap
+                }, 
+
+                {
+                    text: 'Zoom In',
+                    classname: 'bold',
+                    icon: 'assets/images/zoomIn.png',
+                    callback: zoomIn
+                },
+                {
+                    text: 'Zoom Out',
+                    classname: 'bold',
+                    icon: 'assets/images/zoomOut.png',
+                    callback: zoomOut
+                },
+                {
+                    text: 'Rafraichir',
+                    icon: 'assets/images/refresh-64.png',
+                    callback : reloadMap
+                
+                }]
             });
             //Afficher la barre d'échelle
             L.control.scale().addTo(map);

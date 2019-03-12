@@ -481,10 +481,10 @@
 .leaflet-popup {
 	position: absolute;
 	text-align: center;
-	margin-bottom: 20px;
+	/*margin-bottom: 20px;*/
 	}
 .leaflet-popup-content-wrapper {
-	padding: 1px;
+	padding: 3px;
 	text-align: left;
 	border-radius: 12px;
 	}
@@ -538,7 +538,7 @@
 	background: transparent;
 	}
 .leaflet-container a.leaflet-popup-close-button:hover {
-	color: #999;
+	color: #dc3b3b;
 	}
 .leaflet-popup-scrolled {
 	overflow: auto;

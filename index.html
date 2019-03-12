@@ -61,6 +61,9 @@
     <!-- ColorPicker -->
     <link rel="stylesheet" href="assets/plugins/colorpicker/ColorPicker.js">
 
+    <!-- Géosignets (Bookmarks) -->
+    <link rel="stylesheet" href="assets/plugins/Leaflet.Bookmarks/dist/leaflet.bookmarks.css">
+
     <style>
         
         #map {
@@ -233,6 +236,9 @@
 
     <!-- ColorPicker -->
     <script src="assets/plugins/colorpicker/ColorPicker.js"></script>
+
+    <!-- Géosignets (Bookmarks) -->
+    <script src="assets/plugins/Leaflet.Bookmarks/dist/Leaflet.Bookmarks.js"></script>
 
     <!-- App js -->
     <script src="assets/js/pikeadmin.js"></script>
@@ -532,7 +538,10 @@
 					actions: editActions
 				}).addTo(map, layer);
 			});
-		});
+        });
+
+        // Géosignets (Bookmarks)
+        var control = new L.Control.Bookmarks().addTo(map);
     </script>
 
     <!-- END Java Script for this page -->

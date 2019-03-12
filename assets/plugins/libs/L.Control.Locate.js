@@ -62,7 +62,7 @@ You can find the project at: https://github.com/domoritz/leaflet-locatecontrol
                 //color: '#FFA500',
                 //fillColor: '#FFB000'
             },
-            icon: 'fas fa-map-marker-alt',  // fa-location-arrow or fa-map-marker
+            icon: 'fas fa-location-arrow',  // fa-location-arrow or fa-map-marker
             iconLoading: 'fa fa-spinner fa-spin',
             iconElementTag: 'span', // span or i
             circlePadding: [0, 0],
@@ -82,10 +82,10 @@ You can find the project at: https://github.com/domoritz/leaflet-locatecontrol
             keepCurrentZoomLevel: false,
             showPopup: true, // display a popup when the user click on the inner marker
             strings: {
-                title: "Show me where I am",
+                title: "Votre localisation",
                 metersUnit: "meters",
                 feetUnit: "feet",
-                popup: "You are within {distance} {unit} from this point",
+                popup: "Vous êtes à moins de {distance} {unit} de ce point",
                 outsideMapBoundsMsg: "You seem located outside the boundaries of the map"
             },
             locateOptions: {

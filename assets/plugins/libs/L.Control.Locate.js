@@ -40,16 +40,16 @@ You can find the project at: https://github.com/domoritz/leaflet-locatecontrol
             markerClass: L.circleMarker, // L.circleMarker or L.marker
             // range circle
             circleStyle: {
-                color: '#136AEC',
-                fillColor: '#136AEC',
+                color: '#f00c0c',
+                fillColor: '#f00c0c',
                 fillOpacity: 0.15,
                 weight: 2,
                 opacity: 0.5
             },
             // inner marker
             markerStyle: {
-                color: '#136AEC',
-                fillColor: '#2A93EE',
+                color: '#f00c0c',
+                fillColor: '#f00c0c',
                 fillOpacity: 0.7,
                 weight: 2,
                 opacity: 0.9,
@@ -62,7 +62,7 @@ You can find the project at: https://github.com/domoritz/leaflet-locatecontrol
                 //color: '#FFA500',
                 //fillColor: '#FFB000'
             },
-            icon: 'fa fa-map-marker',  // fa-location-arrow or fa-map-marker
+            icon: 'fas fa-map-marker-alt',  // fa-location-arrow or fa-map-marker
             iconLoading: 'fa fa-spinner fa-spin',
             iconElementTag: 'span', // span or i
             circlePadding: [0, 0],

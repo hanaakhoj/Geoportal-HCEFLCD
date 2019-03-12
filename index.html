@@ -1,480 +1,541 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		
-		<title>GÉOPORTAIL</title>
-		<meta name="description" content="Free Bootstrap 4 Admin Theme | Pike Admin">
-		<meta name="author" content="Pike Web Development - https://www.pikephp.com">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>GÉOPORTAIL</title>
+    <meta name="description" content="Free Bootstrap 4 Admin Theme | Pike Admin">
+    <meta name="author" content="Pike Web Development - https://www.pikephp.com">
 
-		<!-- Favicon -->
-		<link rel="shortcut icon" href="assets/images/logo.png">
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="assets/images/logo.png">
 
-		<!-- Bootstrap CSS -->
-		<link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-		
-		<!-- Font Awesome CSS -->
-		<link href="assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-		
-		<!-- Custom CSS -->
-		<link href="assets/css/style.css" rel="stylesheet" type="text/css" />
+    <!-- Bootstrap CSS -->
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    
+    <!-- Font Awesome CSS -->
+    <link href="assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    
+    <!-- Custom CSS -->
+    <link href="assets/css/style.css" rel="stylesheet" type="text/css" />
 
-		<!-- Leaflet Plugin -->
-		<link href="assets/plugins/leaflet/leaflet.css" rel="stylesheet" type="text/css" />
-		
-		<!-- Menu de navigation (Leaflet)-->
-		<link href="assets/plugins/leaflet-navbar/Leaflet.NavBar.css" rel="stylesheet" type="text/css" />
+    <!-- Leaflet Plugin -->
+    <link href="assets/plugins/leaflet/leaflet.css" rel="stylesheet" type="text/css" />
+    
+    <!-- Menu de navigation (Leaflet)-->
+    <link href="assets/plugins/leaflet-navbar/Leaflet.NavBar.css" rel="stylesheet" type="text/css" />
 
-		<!-- zoom min-->
-		<link href="assets/plugins/leaflet-zoom-min/L.Control.ZoomMin.css" rel="stylesheet" type="text/css" />
+    <!-- zoom min-->
+    <link href="assets/plugins/leaflet-zoom-min/L.Control.ZoomMin.css" rel="stylesheet" type="text/css" />
 
-		<link href="assets/plugins/Leaflet.MagnifyingGlass/leaflet.magnifyingglass.css" rel="stylesheet" type="text/css"  />
-        <link rel="stylesheet" href="assets/css/Control.MagnifyingGlass.css" />
+    <link href="assets/plugins/Leaflet.MagnifyingGlass/leaflet.magnifyingglass.css" rel="stylesheet" type="text/css"  />
+    <link rel="stylesheet" href="assets/css/Control.MagnifyingGlass.css" />
+    
+    <!--Minimap (Overview)-->
+    <link rel="stylesheet" href="assets/plugins/leaflet.layerscontrol-minimap/control.layers.minimap.css">
+    <link rel="stylesheet" href="assets/plugins/Leaflet-MiniMap/src/Control.MiniMap.css">
+    
+    <!-- Load Esri Leaflet Geocoder from CDN -->
+    <link rel="stylesheet" href="assets/plugins/leaflet-esri/dist/esri-leaflet-geocoder.css">
+
+    <!--Mouse Position-->
+    <link rel="stylesheet" href="assets/plugins/libs/L.Control.MousePosition.css"/>
+
+    <!--Localisation-->
+    <link rel="stylesheet" href="assets/plugins/libs/L.Control.Locate.min.css"/>
+    
+    <!-- Context Menu -->
+    <link rel="stylesheet" href="assets/plugins/libs/leaflet.contextmenu.css"/>
+
+    <!-- Outils de dessin -->
+    <link rel="stylesheet" href="assets/plugins/leaflet-draw/dist/leaflet.draw-src.css"/>
+
+    <!-- Boite à outils de dessin -->
+    <link rel="stylesheet" href="assets/plugins/leaflet-draw-toolbar/dist/leaflet.draw-toolbar.css">
+
+    <!-- Boite à outils -->
+    <link rel="stylesheet" href="assets/plugins/leaflet-toolbar/dist/leaflet.toolbar.css">
+
+    <!-- ColorPicker -->
+    <link rel="stylesheet" href="assets/plugins/colorpicker/ColorPicker.js">
+
+    <style>
         
-        <!--Minimap (Overview)-->
-        <link rel="stylesheet" href="assets/plugins/leaflet.layerscontrol-minimap/control.layers.minimap.css">
-		<link rel="stylesheet" href="assets/plugins/Leaflet-MiniMap/src/Control.MiniMap.css">
-        
-        <!-- Load Esri Leaflet Geocoder from CDN -->
-		<link rel="stylesheet" href="assets/plugins/leaflet-esri/dist/esri-leaflet-geocoder.css">
+        #map {
+            height: 81vh;
+            width: 100vw;
+            
+        }
 
-		<!--Mouse Position-->
-		<link rel="stylesheet" href="assets/plugins/libs/L.Control.MousePosition.css"/>
+        .info {
+            padding: 6px 8px;
+            font: 14px/16px Arial, Helvetica, sans-serif;
+            background: white;
+            background: rgba(255,255,255,0.8);
+            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+            border-radius: 5px;
+        }
+        .info h4 {
+            margin: 0 0 5px;
+            color: #777;
+        }
 
-		<!--Localisation-->
-        <link rel="stylesheet" href="assets/plugins/libs/L.Control.Locate.min.css"/>
-        
-        <!-- Context Menu -->
-        <link rel="stylesheet" href="assets/plugins/libs/leaflet.contextmenu.css"/>
-
-
-		<style>
-			
-			#map {
-				height: 81vh;
-				width: 100vw;
-				
-			}
-
-			.info {
-				padding: 6px 8px;
-				font: 14px/16px Arial, Helvetica, sans-serif;
-				background: white;
-				background: rgba(255,255,255,0.8);
-				box-shadow: 0 0 15px rgba(0,0,0,0.2);
-				border-radius: 5px;
-			}
-			.info h4 {
-				margin: 0 0 5px;
-				color: #777;
-			}
-
-		</style>
+    </style>
 		
 </head>
 
 <body class="adminbody">
 
-<div id="main">
+    <div id="main">
 
-	<!-- top bar navigation -->
-	<div class="headerbar">
+        <!-- top bar navigation -->
+        <div class="headerbar">
 
-		<!-- LOGO -->
-        <div class="headerbar-left">
-			<a href="index.html" class="logo"><img alt="Logo" src="assets/images/logo.png" /> <span>Eaux et forêts</span></a>
-        </div>
+            <!-- LOGO -->
+            <div class="headerbar-left">
+                <a href="index.html" class="logo"><img alt="Logo" src="assets/images/logo.png" /> <span>Eaux et forêts</span></a>
+            </div>
 
-        <nav class="navbar-custom">
-			<ul class="list-inline menu-left mb-0">
-				<li class="float-left">
-					<button class="button-menu-mobile open-left">
-						<i class="fa fa-fw fa-bars"></i>
-					</button>
-				</li>                        
-			</ul>
-        </nav>
-
-	</div>
-	<!-- End Navigation -->
-	
-    <div class="content-page">
-	
-			<!-- Start content -->
-			<div class="content">
-				<div class="container-fluid">
-					<div class="row">
-						<div class="col-xl-12">
-							<div class="breadcrumb-holder">
-								<h1 class="main-title float-left">DECOUPAGE ADMINISTRATIF</h1>
-								<ol class="breadcrumb float-right">
-									<li class="breadcrumb-item">ACCEUIL</li>
-									<li class="breadcrumb-item active">DECOUPAGE ADMINISTRATIF</li>
-								</ol>
-								<div class="clearfix"></div>
-							</div>
-						</div>
-					</div>	
-	
-					<div class="row">
-						<div id="map" ></div>
-					</div>			
-				</div>
-			</div>
-			<!-- END content -->
-		</div>
-		<!-- END content-page -->
-		
-	<!-- Left Sidebar -->
-	<div class="left main-sidebar">
-	
-		<div class="sidebar-inner leftscroll">
-
-			<div id="sidebar-menu">
-        
-                <ul>
-                    <li class="submenu">
-                            <a href="charts.html"><i class="fa fa-fw fa-area-chart"></i><span>Tableau de bord</span> </a>
-                    </li>
-
-                    <li class="submenu">
-                        <a class="active" href="index.html"><i class="fas fa-map-marked-alt"></i></i><span> Découpage administratif </span> </a>
-                    </li>
-
-                    <li class="">
-                        <a href="#"><i class="fab fa-envira"></i><span> Couvert Végétal &nbsp;</span> <span class="selected"></span></a>
-                    </li>
-                    
-                    <li class="">
-                        <a href="#"><i class="fas fa-mountain"></i><span id="glissTerrain"> Glissement Terrain &nbsp;  </span>
-                        <span class="selected"></span></a>
-                    </li>
+            <nav class="navbar-custom">
+                <ul class="list-inline menu-left mb-0">
+                    <li class="float-left">
+                        <button class="button-menu-mobile open-left">
+                            <i class="fa fa-fw fa-bars"></i>
+                        </button>
+                    </li>                        
                 </ul>
+            </nav>
 
+        </div>
+        <!-- End Navigation -->
+        
+        <div class="content-page">
+        
+                <!-- Start content -->
+                <div class="content">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-xl-12">
+                                <div class="breadcrumb-holder">
+                                    <h1 class="main-title float-left">DECOUPAGE ADMINISTRATIF</h1>
+                                    <ol class="breadcrumb float-right">
+                                        <li class="breadcrumb-item">ACCEUIL</li>
+                                        <li class="breadcrumb-item active">DECOUPAGE ADMINISTRATIF</li>
+                                    </ol>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                        </div>	
+        
+                        <div class="row">
+                            <div id="map" ></div>
+                        </div>			
+                    </div>
+                </div>
+                <!-- END content -->
+            </div>
+            <!-- END content-page -->
+            
+        <!-- Left Sidebar -->
+        <div class="left main-sidebar">
+        
+            <div class="sidebar-inner leftscroll">
+
+                <div id="sidebar-menu">
+            
+                    <ul>
+                        <li class="submenu">
+                                <a href="charts.html"><i class="fa fa-fw fa-area-chart"></i><span>Tableau de bord</span> </a>
+                        </li>
+
+                        <li class="submenu">
+                            <a class="active" href="index.html"><i class="fas fa-map-marked-alt"></i></i><span> Découpage administratif </span> </a>
+                        </li>
+
+                        <li class="">
+                            <a href="#"><i class="fab fa-envira"></i><span> Couvert Végétal &nbsp;</span> <span class="selected"></span></a>
+                        </li>
+                        
+                        <li class="">
+                            <a href="#"><i class="fas fa-mountain"></i><span id="glissTerrain"> Glissement Terrain &nbsp;  </span>
+                            <span class="selected"></span></a>
+                        </li>
+                    </ul>
+
+                    <div class="clearfix"></div>
+                </div>
                 <div class="clearfix"></div>
-			</div>
-			<div class="clearfix"></div>
-		</div>
+            </div>
 
-	</div>
-	<!-- End Sidebar -->
+        </div>
+        <!-- End Sidebar -->
 
-	<!-- SECTION TABLEAU DE BORD -->
-	<div id="sectionTabBord"></div>
-	<!-- SECTION TABLEAU DE BORD -->
- 
-	<footer class="footer">
-		<span class="text-right">
-		2019 &copy; <a target="_blank" href="http://www.eauxetforets.gov.ma/fr/index.aspx">Haut Commissariat aux Eaux et Forêts et à la Lutte Contre la Désertification	
-		</a>
-		</span>
-	</footer>
+        <!-- SECTION TABLEAU DE BORD -->
+        <div id="sectionTabBord"></div>
+        <!-- SECTION TABLEAU DE BORD -->
+    
+        <footer class="footer">
+            <span class="text-right">
+            2019 &copy; <a target="_blank" href="http://www.eauxetforets.gov.ma/fr/index.aspx">Haut Commissariat aux Eaux et Forêts et à la Lutte Contre la Désertification	
+            </a>
+            </span>
+        </footer>
 
-</div>
-<!-- END main -->
-<script src="assets/js/jquery.min.js"></script>
-<script src="assets/js/jquery.blockUI.js"></script>
-<script src="assets/js/jquery.nicescroll.js"></script>
+    </div>
+    <!-- END main -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.blockUI.js"></script>
+    <script src="assets/js/jquery.nicescroll.js"></script>
 
-<script src="assets/plugins/leaflet/leaflet.js"></script>
+    <script src="assets/plugins/leaflet/leaflet.js"></script>
 
-<script src="assets/plugins/leaflet-navbar/Leaflet.NavBar.js"></script>
+    <script src="assets/plugins/leaflet-navbar/Leaflet.NavBar.js"></script>
 
-<script src="assets/plugins/leaflet-zoom-min/L.Control.ZoomMin.js"></script>
+    <script src="assets/plugins/leaflet-zoom-min/L.Control.ZoomMin.js"></script>
 
 
-<script src="assets/plugins/Leaflet-MiniMap/src/Control.MiniMap.js"></script>
+    <script src="assets/plugins/Leaflet-MiniMap/src/Control.MiniMap.js"></script>
 
-<!-- Esri Leaflet JS  -->
-<script src="assets/plugins/leaflet-esri/dist/esri-leaflet.js"></script>
+    <!-- Esri Leaflet JS  -->
+    <script src="assets/plugins/leaflet-esri/dist/esri-leaflet.js"></script>
 
-<!-- Esri Leaflet Geocoder -->
-<script src="assets/plugins/leaflet-esri/dist/esri-leaflet-geocoder.js"></script>
-<script src="assets/plugins/leaflet.layerscontrol-minimap/L.Control.Layers.Minimap.js"></script>
+    <!-- Esri Leaflet Geocoder -->
+    <script src="assets/plugins/leaflet-esri/dist/esri-leaflet-geocoder.js"></script>
+    <script src="assets/plugins/leaflet.layerscontrol-minimap/L.Control.Layers.Minimap.js"></script>
 
-<script src="assets/plugins/libs/L.Control.Locate.js"></script> 
+    <script src="assets/plugins/libs/L.Control.Locate.js"></script> 
 
-<script src="assets/plugins/libs/L.Control.MousePosition.js"></script>
+    <script src="assets/plugins/libs/L.Control.MousePosition.js"></script>
 
-<script src="assets/plugins/Leaflet.MagnifyingGlass/leaflet.magnifyingglass.js"></script>
-<script src="assets/js/Control.MagnifyingGlass.js"></script>
-<script src="assets/js/modernizr.min.js"></script>
+    <script src="assets/plugins/Leaflet.MagnifyingGlass/leaflet.magnifyingglass.js"></script>
+    <script src="assets/js/Control.MagnifyingGlass.js"></script>
+    <script src="assets/js/modernizr.min.js"></script>
 
-<script src="assets/js/moment.min.js"></script>
-		
-<script src="assets/js/popper.min.js"></script>
-<script src="assets/js/bootstrap.min.js"></script>
-
-<script src="assets/js/detect.js"></script>
-<script src="assets/js/fastclick.js"></script>
-<script src="assets/plugins/libs/leaflet.contextmenu.js"></script>
-
-<!-- App js -->
-<script src="assets/js/pikeadmin.js"></script>
-	<script>
+    <script src="assets/js/moment.min.js"></script>
             
-            function showCoordinates (e) {
-                alert(e.latlng);
-            }
+    <script src="assets/js/popper.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
 
-            function centerMap (e) {
-                map.panTo(e.latlng);
-            }
+    <script src="assets/js/detect.js"></script>
+    <script src="assets/js/fastclick.js"></script>
+    <script src="assets/plugins/libs/leaflet.contextmenu.js"></script>
 
-            function zoomIn (e) {
-                map.zoomIn();
-            }
+    <!-- Boite à outils -->
+    <script src="assets/plugins/leaflet-toolbar/dist/leaflet.toolbar-src.js"></script>
 
-            function zoomOut (e) {
-                map.zoomOut();
-            }
+    <!-- Outils de dessin -->
+    <script src="assets/plugins/leaflet-draw/dist/leaflet.draw-src.js"></script>
 
-            function reloadMap(obj) {
-                location.reload();
-            }
+    <!-- Boite à outils de dessin -->
+    <script src="assets/plugins/leaflet-draw-toolbar/dist/leaflet.draw-toolbar.js"></script>
 
-            // Initialisation de la carte avec un menu de click droit
-            var map = L.map('map', {
-                center: [35.431879, -5.201654],
-                zoom: 9,
-                contextmenu : true,
-                contextmenuWidth : 150,
-                contextmenuItems : [{
-                    text: 'GT à proximité',
-                    classname: 'bold',
-                    icon: 'assets/images/glissementTerrain.png',
-                
-                },
-                {
-                    text: 'Show coordinates',
-                    classname : 'bold',
-                    icon: 'assets/images/localisation.png',
-                    callback: showCoordinates
-                },
-                {
-                    text: 'Centrer la carte ici',
-                    classname: 'bold',
-                    icon: 'assets/images/center.png',
-                    callback: centerMap
-                }, 
+    <!-- ColorPicker -->
+    <script src="assets/plugins/colorpicker/ColorPicker.js"></script>
 
-                {
-                    text: 'Zoom In',
-                    classname: 'bold',
-                    icon: 'assets/images/zoomIn.png',
-                    callback: zoomIn
-                },
-                {
-                    text: 'Zoom Out',
-                    classname: 'bold',
-                    icon: 'assets/images/zoomOut.png',
-                    callback: zoomOut
-                },
-                {
-                    text: 'Rafraichir',
-                    icon: 'assets/images/refresh-64.png',
-                    callback : reloadMap
-                
-                }]
-            });
-            //AJOUTEZ LA POSITION DE LA SOURIS À LA CARTE
-            L.control.mousePosition({position: 'bottomleft'}).addTo(map);
+    <!-- App js -->
+    <script src="assets/js/pikeadmin.js"></script>
 
-            //Afficher la barre d'échelle
-            L.control.scale().addTo(map);
+    <!-- Map js -->
+    <script>
             
-            //Ajouter le menu de navigation : retour à la carte de base (Tanger) 
-            L.control.navbar({position: 'topleft'}).addTo(map);
+        function showCoordinates (e) {
+            alert(e.latlng);
+        }
 
-            //LOCALISATION
-            L.control.locate().addTo(map);
+        function centerMap (e) {
+            map.panTo(e.latlng);
+        }
 
-            //Base maps toggle
-			var baselayers = {
-                'EsriWorldImagery': L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-                    attribution: 'Tiles &copy;<a href="https://www.esri.com/en-us/homem">ESRI</a>'
-                }),
+        function zoomIn (e) {
+            map.zoomIn();
+        }
 
-                'OpenStreetMap': L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                    attribution: '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a>'
-                })
-            };
+        function zoomOut (e) {
+            map.zoomOut();
+        }
 
-            var overlays;
-            var layersControl = L.control.layers.minimap(baselayers, overlays ,{
-            /*collapsed: false,*/
-                position: 'topleft',
-                topPadding: 10,
-                bottomPadding: 40,
-                overlayBackgroundLayer: L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-                    attribution: 'Tiles &copy;<a href="https://www.esri.com/en-us/homem">ESRI</a>'})
-            }).addTo(map);
+        function reloadMap(obj) {
+            location.reload();
+        }
 
-            var filter = function () {
-                var hash = window.location.hash;
-                var filterIndex = hash.indexOf('filter=');
-                if (filterIndex !== -1) {
-                    var filterString = hash.substr(filterIndex + 7).trim();
-                    layersControl.filter(filterString);
-                }
-            };
+        // Initialisation de la carte avec un menu de click droit
+        var map = L.map('map', {
+            center: [35.431879, -5.201654],
+            zoom: 9,
+            contextmenu : true,
+            contextmenuWidth : 150,
+            contextmenuItems : [{
+                text: 'GT à proximité',
+                classname: 'bold',
+                icon: 'assets/images/glissementTerrain.png',
+            
+            },
+            {
+                text: 'Show coordinates',
+                classname : 'bold',
+                icon: 'assets/images/localisation.png',
+                callback: showCoordinates
+            },
+            {
+                text: 'Centrer la carte ici',
+                classname: 'bold',
+                icon: 'assets/images/center.png',
+                callback: centerMap
+            }, 
 
-            baselayers.EsriWorldImagery.addTo(map);
+            {
+                text: 'Zoom In',
+                classname: 'bold',
+                icon: 'assets/images/zoomIn.png',
+                callback: zoomIn
+            },
+            {
+                text: 'Zoom Out',
+                classname: 'bold',
+                icon: 'assets/images/zoomOut.png',
+                callback: zoomOut
+            },
+            {
+                text: 'Rafraichir',
+                icon: 'assets/images/refresh-64.png',
+                callback : reloadMap
+            
+            }]
+        });
+        //AJOUTEZ LA POSITION DE LA SOURIS À LA CARTE
+        L.control.mousePosition({position: 'bottomleft'}).addTo(map);
 
-            L.DomEvent.on(window, 'hashchange', filter);
-            filter();
+        //Afficher la barre d'échelle
+        L.control.scale().addTo(map);
+        
+        //Ajouter le menu de navigation : retour à la carte de base (Tanger) 
+        L.control.navbar({position: 'topleft'}).addTo(map);
 
-            // Animation des entités
-            function highlightFeature(e) {
-                var layer = e.target;
+        //LOCALISATION
+        L.control.locate().addTo(map);
 
-                layer.setStyle({
-                    weight: 5,
-                    color: '#FF0000',
-                    dashArray: '',
-                    fillOpacity: 0
-                });
+        //Base maps toggle
+        var baselayers = {
+            'EsriWorldImagery': L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+                attribution: 'Tiles &copy;<a href="https://www.esri.com/en-us/homem">ESRI</a>'
+            }),
 
-                if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
-                    layer.bringToFront();
-                }
+            'OpenStreetMap': L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a>'
+            })
+        };
 
-                info.update(layer.feature.properties);
+        var overlays;
+        var layersControl = L.control.layers.minimap(baselayers, overlays ,{
+        /*collapsed: false,*/
+            position: 'topleft',
+            topPadding: 10,
+            bottomPadding: 40,
+            overlayBackgroundLayer: L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+                attribution: 'Tiles &copy;<a href="https://www.esri.com/en-us/homem">ESRI</a>'})
+        }).addTo(map);
+
+        var filter = function () {
+            var hash = window.location.hash;
+            var filterIndex = hash.indexOf('filter=');
+            if (filterIndex !== -1) {
+                var filterString = hash.substr(filterIndex + 7).trim();
+                layersControl.filter(filterString);
             }
+        };
 
-            function resetHighlight(e) {
-                WFSLayer.resetStyle(e.target);
-                info.update();
-            }
+        baselayers.EsriWorldImagery.addTo(map);
 
-            function zoomToFeature(e) {
-                map.fitBounds(e.target.getBounds());
-            }
+        L.DomEvent.on(window, 'hashchange', filter);
+        filter();
 
-            function onEachFeature(feature, layer) {
-                layer.on({
-                    mouseover: highlightFeature,
-                    mouseout: resetHighlight,
-                    click: zoomToFeature
-                });
-            }
+        // Animation des entités
+        function highlightFeature(e) {
+            var layer = e.target;
 
-            //Importer le découpage administratif sous format GeoJSON en utilisant le service WFS 
-            var rootUrl = 'http://localhost:8060/geoserver/geoportail/ows';
-
-            var defaultParameters = {
-                service: 'WFS',
-                version: '1.0.0',
-                request: 'GetFeature',
-                typeName: 'geoportail:decoupage_administratif',
-                outputFormat: 'text/javascript',
-                format_options: 'callback: getJson'
-
-            };
-
-            var parameters = L.Util.extend(defaultParameters);
-
-            var WFSLayer;
-            var ajax = $.ajax({
-                url : rootUrl + L.Util.getParamString(parameters),
-                dataType : 'jsonp',
-                jsonpCallback : 'getJson',
-                success : function (response) {
-                    console.log(rootUrl + L.Util.getParamString(parameters));
-                    WFSLayer =L.geoJson(response, {
-                        style: function(feature) {
-                                return {
-                                    color: '#fff',
-                                    weight: 2,
-                                    opacity: 1,
-                                    dashArray: '3',
-                                    fillOpacity: 0
-                                    };
-                        },
-                        onEachFeature: onEachFeature
-                    }).addTo(map);
-                }
+            layer.setStyle({
+                weight: 5,
+                color: '#FF0000',
+                dashArray: '',
+                fillOpacity: 0
             });
 
-            var info = L.control();
+            if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+                layer.bringToFront();
+            }
 
-            info.onAdd = function (map) {
-                this._div = L.DomUtil.create('div', 'info'); // create a div with a class "info"
-                this.update();
-                return this._div;
-            };
+            info.update(layer.feature.properties);
+        }
 
-            // method that we will use to update the control based on feature properties passed
-            info.update = function (props) {
-                this._div.innerHTML = '<h6>Informations</h6>' +  (props ?
-                    '<b>' + props.type + '</b><br />' + props.nom
-                    : 'Survoler une commune');
-            };
+        function resetHighlight(e) {
+            WFSLayer.resetStyle(e.target);
+            info.update();
+        }
 
-            info.addTo(map);
+        function zoomToFeature(e) {
+            map.fitBounds(e.target.getBounds());
+        }
 
-            // La loupe 
-
-            // Fond de base pour la loupe: Normal et Sattelitaire
-            var glass_map=L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}');
-
-            var magnifyingGlass = L.magnifyingGlass({
-                zoomOffset: 3,
-                layers: [glass_map]
+        function onEachFeature(feature, layer) {
+            layer.on({
+                mouseover: highlightFeature,
+                mouseout: resetHighlight,
+                click: zoomToFeature
             });
+        }
 
-            L.control.magnifyingglass(magnifyingGlass, {
-                forceSeparateButton: true
-            }).addTo(map);
+        //Importer le découpage administratif sous format GeoJSON en utilisant le service WFS 
+        var rootUrl = 'http://localhost:8060/geoserver/geoportail/ows';
 
-            // Overview (Mini map)
+        var defaultParameters = {
+            service: 'WFS',
+            version: '1.0.0',
+            request: 'GetFeature',
+            typeName: 'geoportail:decoupage_administratif',
+            outputFormat: 'text/javascript',
+            format_options: 'callback: getJson'
 
-			var baselayers_minimap = {
-				EsriWorldImagery: L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-					attribution: 'Tiles &copy;<a href="https://www.esri.com/en-us/homem">ESRI</a>'
-				}),
-				OpenStreetMap: L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-					attribution: '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a>'
+        };
+
+        var parameters = L.Util.extend(defaultParameters);
+
+        var WFSLayer;
+        var ajax = $.ajax({
+            url : rootUrl + L.Util.getParamString(parameters),
+            dataType : 'jsonp',
+            jsonpCallback : 'getJson',
+            success : function (response) {
+                console.log(rootUrl + L.Util.getParamString(parameters));
+                WFSLayer =L.geoJson(response, {
+                    style: function(feature) {
+                            return {
+                                color: '#fff',
+                                weight: 2,
+                                opacity: 1,
+                                dashArray: '3',
+                                fillOpacity: 0
+                                };
+                    },
+                    onEachFeature: onEachFeature
+                }).addTo(map);
+            }
+        });
+
+        var info = L.control();
+
+        info.onAdd = function (map) {
+            this._div = L.DomUtil.create('div', 'info'); // create a div with a class "info"
+            this.update();
+            return this._div;
+        };
+
+        // method that we will use to update the control based on feature properties passed
+        info.update = function (props) {
+            this._div.innerHTML = '<h6>Informations</h6>' +  (props ?
+                '<b>' + props.type + '</b><br />' + props.nom
+                : 'Survoler une commune');
+        };
+
+        info.addTo(map);
+
+        // La loupe 
+
+        // Fond de base pour la loupe: Normal et Sattelitaire
+        var glass_map=L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}');
+
+        var magnifyingGlass = L.magnifyingGlass({
+            zoomOffset: 3,
+            layers: [glass_map]
+        });
+
+        L.control.magnifyingglass(magnifyingGlass, {
+            forceSeparateButton: true
+        }).addTo(map);
+
+        // Overview (Mini map)
+
+        var baselayers_minimap = {
+            EsriWorldImagery: L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+                attribution: 'Tiles &copy;<a href="https://www.esri.com/en-us/homem">ESRI</a>'
+            }),
+            OpenStreetMap: L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a>'
+            })
+        };
+
+        var rect1 = {color: "#b6dc3b", weight: 3};
+        var rect2 = {color: "#6194c1", weight: 1, opacity:0, fillOpacity:0};
+
+        var miniMap = new L.Control.MiniMap(baselayers_minimap.EsriWorldImagery, { toggleDisplay: true, collapsedWidth: 27, collapsedHeight: 27, aimingRectOptions : rect1, shadowRectOptions: rect2 }).addTo(map);
+        
+        map.on('baselayerchange', function (e) {
+            miniMap.changeLayer(baselayers_minimap[e.name]);
+        })
+
+        // Barre de recherche
+        var arcgisOnline = L.esri.Geocoding.arcgisOnlineProvider();
+
+        var searchControl = L.esri.Geocoding.geosearch({
+            providers: [
+            arcgisOnline,
+            L.esri.Geocoding.mapServiceProvider({
+                label: 'States and Counties',
+                url: 'https://sampleserver6.arcgisonline.com/arcgis/rest/services/Census/MapServer',
+                layers: [2, 3],
+                searchFields: ['NAME', 'STATE_NAME']
+            })
+            ]
+        }).addTo(map);	
+
+        var results = L.layerGroup().addTo(map);
+
+        searchControl.on('results', function(data){
+            results.clearLayers();
+            for (var i = data.results.length - 1; i >= 0; i--) {
+            results.addLayer(L.marker(data.results[i].latlng));
+            }
+        });
+        
+        //Outils de dessin
+        var drawnItems = new L.FeatureGroup().addTo(map),
+			editActions = [
+                L.Toolbar2.EditAction.Popup.Edit,
+                L.Toolbar2.EditAction.Popup.Delete,
+				L.Toolbar2.Action.extendOptions({
+					toolbarIcon: { 
+						className: 'leaflet-color-picker', 
+						html: '<span class="fa fa-eyedropper"></span>' 
+					},
+					subToolbar: new L.Toolbar2({ actions: [
+						L.ColorPicker.extendOptions({ color: '#007bff' }),
+						L.ColorPicker.extendOptions({ color: '#dc3545' }),
+                        L.ColorPicker.extendOptions({ color: '#ffc107' }),
+                        L.ColorPicker.extendOptions({ color: '#b6dc3b' })
+					]})
 				})
-			};
+            ];
+        
+        new L.Toolbar2.DrawToolbar({
+			position: 'topleft',
+		}).addTo(map);
 
-			var rect1 = {color: "#b6dc3b", weight: 3};
-			var rect2 = {color: "#6194c1", weight: 1, opacity:0, fillOpacity:0};
+		map.on('draw:created', function(evt) {
+			var	type = evt.layerType,
+				layer = evt.layer;
 
-			var miniMap = new L.Control.MiniMap(baselayers_minimap.EsriWorldImagery, { toggleDisplay: true, collapsedWidth: 27, collapsedHeight: 27, aimingRectOptions : rect1, shadowRectOptions: rect2 }).addTo(map);
-			
-			map.on('baselayerchange', function (e) {
-				miniMap.changeLayer(baselayers_minimap[e.name]);
-			})
+			drawnItems.addLayer(layer);
 
-            // Recherche
-			var arcgisOnline = L.esri.Geocoding.arcgisOnlineProvider();
+			layer.on('click', function(event) {
+				new L.Toolbar2.EditToolbar.Popup(event.latlng, {
+					actions: editActions
+				}).addTo(map, layer);
+			});
+		});
+    </script>
 
-            var searchControl = L.esri.Geocoding.geosearch({
-                providers: [
-                arcgisOnline,
-                L.esri.Geocoding.mapServiceProvider({
-                    label: 'States and Counties',
-                    url: 'https://sampleserver6.arcgisonline.com/arcgis/rest/services/Census/MapServer',
-                    layers: [2, 3],
-                    searchFields: ['NAME', 'STATE_NAME']
-                })
-                ]
-            }).addTo(map);	
-
-            var results = L.layerGroup().addTo(map);
-
-            searchControl.on('results', function(data){
-                results.clearLayers();
-                for (var i = data.results.length - 1; i >= 0; i--) {
-                results.addLayer(L.marker(data.results[i].latlng));
-                }
-            });
-</script>
-
-<!-- END Java Script for this page -->
+    <!-- END Java Script for this page -->
 
 </body>
 </html>

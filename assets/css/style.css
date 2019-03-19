@@ -279,8 +279,11 @@ a {
 .navbar-custom .nav-link {
     padding: 0 8px;
     line-height: 50px;
-    color: #e9f2ff;
-	font-size: 20px; }
+    color: #ffffff;
+    font-size: 20px; }
+  
+  .navbar-custom .nav-link:hover {
+    color: #262d33; }
 
 .navbar-custom .dropdown-toggle:after {
     content: initial; }
@@ -421,7 +424,7 @@ body.adminbody .main-sidebar.left {
 #sidebar-menu > ul > li > a {
   color: #ffffff;
   display: block;
-  padding: 12px 12px 15px 12px;
+  padding: 12px 12px 19px 12px;
   font-weight: 400;
   font-size: 0.90rem;
   border-left: 2px solid transparent;  }

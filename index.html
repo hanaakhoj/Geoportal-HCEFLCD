@@ -20,6 +20,9 @@
     
     <!-- Custom CSS -->
     <link href="assets/css/style.css" rel="stylesheet" type="text/css" />
+   
+    <!-- Modal d'authentification -->
+    <link rel="stylesheet" href="assets/css/login_modal.css">
 
     <!-- Leaflet Plugin -->
     <link href="assets/plugins/leaflet/leaflet.css" rel="stylesheet" type="text/css" />
@@ -64,6 +67,10 @@
     <!-- Géosignets (Bookmarks) -->
     <link rel="stylesheet" href="assets/plugins/Leaflet.Bookmarks/dist/leaflet.bookmarks.css">
 
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="assets/plugins/animate/animate.css">
+    
+
     <style>
         
         #map {
@@ -102,6 +109,16 @@
             </div>
 
             <nav class="navbar-custom">
+                    <ul class="list-inline float-right mb-0">
+
+                        <li class="list-inline-item dropdown notif">
+                            <a id="login" class="nav-link nav-user" data-toggle="modal" data-target="#loginModal" tabindex="-1" role="dialog">
+                                <i class="fas fa-sign-in-alt"></i>
+                            </a>
+                           
+                        </li>
+
+                    </ul>
                 <ul class="list-inline menu-left mb-0">
                     <li class="float-left">
                         <button class="button-menu-mobile open-left">
@@ -164,18 +181,44 @@
 							</ul>
                         </li>
                     </ul>
-
                     <div class="clearfix"></div>
                 </div>
                 <div class="clearfix"></div>
             </div>
-
         </div>
         <!-- End Sidebar -->
 
-        <!-- SECTION TABLEAU DE BORD -->
-        <div id="sectionTabBord"></div>
-        <!-- SECTION TABLEAU DE BORD -->
+        <!-- Modal HTML -->
+        <div id="loginModal" class="modal fade animated zoomIn" role="dialog">
+            <div class="modal-dialog modal-login ">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <div class="avatar">
+                            <i class="fas fa-user-shield fa-4x" style="color:white;"></i>
+                        </div>				
+                        <h4 class="modal-title"> Administrateur</h4>	
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="/examples/actions/confirmation.php" method="post">
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="username" placeholder="Email" required="required">		
+                            </div>
+                            <div class="form-group">
+                                <input type="password" class="form-control" name="password" placeholder="Mot de passe" required="required">	
+                            </div>        
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary btn-lg btn-block login-btn">S'authentifier</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="#">Mot de passe oublié?</a>
+                    </div>
+                </div>
+            </div>
+        </div> 
+
     
         <footer class="footer">
             <span class="text-right">
@@ -243,7 +286,13 @@
 
     <!-- Map js -->
     <script>
-            
+
+        /*$(document).ready(function(){
+            $("#login").click(function(){
+                $("#loginModal").modal("show");
+            });
+        });
+            */        
         function showCoordinates (e) {
             alert(e.latlng);
         }

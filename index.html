@@ -69,7 +69,7 @@
         #map {
             height: 81vh;
             width: 100vw;
-            
+            /*z-index: -1;*/
         }
 
         .info {
@@ -122,10 +122,10 @@
                         <div class="row">
                             <div class="col-xl-12">
                                 <div class="breadcrumb-holder">
-                                    <h1 class="main-title float-left">DECOUPAGE ADMINISTRATIF</h1>
+                                    <h1 class="main-title float-left">GÉNÉRALITÉS</h1>
                                     <ol class="breadcrumb float-right">
                                         <li class="breadcrumb-item">ACCEUIL</li>
-                                        <li class="breadcrumb-item active">DECOUPAGE ADMINISTRATIF</li>
+                                        <li class="breadcrumb-item active">GÉNÉRALITÉS</li>
                                     </ol>
                                     <div class="clearfix"></div>
                                 </div>
@@ -133,7 +133,9 @@
                         </div>	
         
                         <div class="row">
-                            <div id="map" ></div>
+                                						
+                            <div id="map" ></div> 
+                            
                         </div>			
                     </div>
                 </div>
@@ -150,20 +152,16 @@
             
                     <ul>
                         <li class="submenu">
-                                <a href="charts.html"><i class="fa fa-fw fa-area-chart"></i><span>Tableau de bord</span> </a>
+                                <a class="active" href="index.html"><i class="fa fa-fw fa-area-chart"></i><span>Généralités</span> </a>
                         </li>
 
                         <li class="submenu">
-                            <a class="active" href="index.html"><i class="fas fa-map-marked-alt"></i></i><span> Découpage administratif </span> </a>
-                        </li>
-
-                        <li class="">
-                            <a href="#"><i class="fab fa-envira"></i><span> Couvert Végétal &nbsp;</span> <span class="selected"></span></a>
-                        </li>
-                        
-                        <li class="">
-                            <a href="#"><i class="fas fa-mountain"></i><span id="glissTerrain"> Glissement Terrain &nbsp;  </span>
-                            <span class="selected"></span></a>
+                            <a  href="#"><i class="fas fa-map-marked-alt"></i></i><span> Zones protégées </span> <span class="menu-arrow"></span></a>
+							<ul class="list-unstyled">
+								<li><a href="#">Jbel Moussa</a></li>
+                                <li><a href="#">Jebha</a></li>
+                                <li><a href="#">Tahaddart</a></li>
+							</ul>
                         </li>
                     </ul>
 
@@ -322,40 +320,7 @@
         //LOCALISATION
         L.control.locate().addTo(map);
 
-        //Base maps toggle
-        var baselayers = {
-            'EsriWorldImagery': L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-                attribution: 'Tiles &copy;<a href="https://www.esri.com/en-us/homem">ESRI</a>'
-            }),
-
-            'OpenStreetMap': L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a>'
-            })
-        };
-
-        var overlays;
-        var layersControl = L.control.layers.minimap(baselayers, overlays ,{
-        /*collapsed: false,*/
-            position: 'topleft',
-            topPadding: 10,
-            bottomPadding: 40,
-            overlayBackgroundLayer: L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-                attribution: 'Tiles &copy;<a href="https://www.esri.com/en-us/homem">ESRI</a>'})
-        }).addTo(map);
-
-        var filter = function () {
-            var hash = window.location.hash;
-            var filterIndex = hash.indexOf('filter=');
-            if (filterIndex !== -1) {
-                var filterString = hash.substr(filterIndex + 7).trim();
-                layersControl.filter(filterString);
-            }
-        };
-
-        baselayers.EsriWorldImagery.addTo(map);
-
-        L.DomEvent.on(window, 'hashchange', filter);
-        filter();
+        
 
         // Animation des entités
         function highlightFeature(e) {
@@ -445,6 +410,41 @@
         };
 
         info.addTo(map);
+
+        //Base maps toggle
+        var baselayers = {
+            'EsriWorldImagery': L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+                attribution: 'Tiles &copy;<a href="https://www.esri.com/en-us/homem">ESRI</a>'
+            }),
+
+            'OpenStreetMap': L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a>'
+            })
+        };
+
+        var overlays;
+        var layersControl = L.control.layers.minimap(baselayers, overlays ,{
+        /*collapsed: false,*/
+            position: 'topright',
+            topPadding: 10,
+            bottomPadding: 40,
+            overlayBackgroundLayer: L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+                attribution: 'Tiles &copy;<a href="https://www.esri.com/en-us/homem">ESRI</a>'})
+        }).addTo(map);
+
+        var filter = function () {
+            var hash = window.location.hash;
+            var filterIndex = hash.indexOf('filter=');
+            if (filterIndex !== -1) {
+                var filterString = hash.substr(filterIndex + 7).trim();
+                layersControl.filter(filterString);
+            }
+        };
+
+        baselayers.EsriWorldImagery.addTo(map);
+
+        L.DomEvent.on(window, 'hashchange', filter);
+        filter();
 
         // La loupe 
 

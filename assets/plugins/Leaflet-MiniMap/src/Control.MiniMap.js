@@ -111,7 +111,9 @@
 			var center = this.options.centerFixed || this._mainMap.getCenter();
 			this._miniMap.setView(center, this._decideZoom(true));
 			this._setDisplay(this.options.minimized);
+			this._minimize(); 
 			return this;
+
 		},
 
 		onRemove: function (map) {

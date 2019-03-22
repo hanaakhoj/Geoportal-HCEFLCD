@@ -173,17 +173,22 @@ var baselayers = {
 
     'OpenStreetMap': L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a>'
+    }),
+    'GoogleMapsHybrid' : L.gridLayer.googleMutant({type:'hybrid'
+    }),
+    'GoogleMapsTerrain' : L.gridLayer.googleMutant({type:'terrain'
+    }),
+    'GoogleMapsRoadmap' : L.gridLayer.googleMutant({type:'roadmap'
     })
 };
 
 var overlays;
 var layersControl = L.control.layers.minimap(baselayers, overlays ,{
-/*collapsed: false,*/
+    /*collapsed: false,*/
     position: 'topright',
     topPadding: 10,
     bottomPadding: 40,
-    overlayBackgroundLayer: L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-        attribution: 'Tiles &copy;<a href="https://www.esri.com/en-us/homem">ESRI</a>'})
+    overlayBackgroundLayer: L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}')
 }).addTo(map);
 
 var filter = function () {
@@ -222,6 +227,12 @@ var baselayers_minimap = {
     }),
     OpenStreetMap: L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a>'
+    }),
+    GoogleMapsHybrid : L.gridLayer.googleMutant({ type:'hybrid'
+    }),
+    GoogleMapsTerrain : L.gridLayer.googleMutant({type:'terrain'
+    }),
+    GoogleMapsRoadmap : L.gridLayer.googleMutant({type:'roadmap'
     })
 };
 

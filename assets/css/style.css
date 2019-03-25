@@ -10,8 +10,11 @@ html {
 body {
   font-size: 0.9rem;
   background-color: #efefef;
-  /*padding-bottom: 50px;*/ }
+  /*padding-bottom: 50px;*/ 
   overflow: hidden;
+  min-height: 100%; 
+}
+  
 
 a {
     color: #0ca4ca;
@@ -305,13 +308,15 @@ a {
 .main-sidebar {
   top: 50px;
   width: 250px;
+  /*height: 100%;*/
   z-index: 10;
   background: #262D33;
   bottom: 70px;
   margin-bottom: -70px;
   margin-top: 0;
-  padding-bottom: 70px;
-  position: absolute; }
+  padding-bottom: 250px;
+  position: absolute;
+  /*overflow: auto; */}
 
 .content-page {
   margin-left: 250px;

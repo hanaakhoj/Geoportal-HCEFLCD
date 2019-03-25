@@ -145,6 +145,7 @@ var ajax = $.ajax({
             },
             onEachFeature: onEachFeature
         }).addTo(map);
+        map.fitBounds(WFSLayer.getBounds());
     }
 });
 

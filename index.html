@@ -70,6 +70,9 @@
     <!-- Animate.css -->
     <link rel="stylesheet" href="assets/css/map.css">
 
+    <!-- Module du Jbel Moussa -->
+    <link rel="stylesheet" href="assets/css/jbelMoussa.css">
+
     
 		
 </head>
@@ -111,31 +114,31 @@
         
         <div class="content-page">
         
-                <!-- Start content -->
-                <div class="content">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-xl-12">
-                                <div class="breadcrumb-holder">
-                                    <h1 class="main-title float-left">GÉNÉRALITÉS</h1>
-                                    <ol class="breadcrumb float-right">
-                                        <li class="breadcrumb-item">ACCEUIL</li>
-                                        <li class="breadcrumb-item active">GÉNÉRALITÉS</li>
-                                    </ol>
-                                    <div class="clearfix"></div>
-                                </div>
+            <!-- Start content -->
+            <div class="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="breadcrumb-holder">
+                                <h1 class="main-title float-left">GÉNÉRALITÉS</h1>
+                                <ol class="breadcrumb float-right">
+                                    <li class="breadcrumb-item">ACCEUIL</li>
+                                    <li class="breadcrumb-item active">GÉNÉRALITÉS</li>
+                                </ol>
+                                <div class="clearfix"></div>
                             </div>
-                        </div>	
-        
-                        <div class="row">
-                                						
-                            <div id="map" ></div> 
-                            
-                        </div>			
+                        </div>
+                    </div>	
+
+                    <!-- MAP -->
+                    <div class="row">			
+                        <div id="map" ></div> 
                     </div>
+                    <!-- /MAP -->
                 </div>
-                <!-- END content -->
             </div>
+            <!-- /END content -->
+        </div>
             <!-- END content-page -->
             
         <!-- Left Sidebar -->
@@ -153,9 +156,26 @@
                         <li class="submenu">
                             <a  href="#"><i class="fas fa-map-marked-alt"></i></i><span> Zones protégées </span> <span class="menu-arrow"></span></a>
 							<ul class="list-unstyled">
-								<li><a href="#">Jbel Moussa</a></li>
-                                <li><a href="#">Jebha</a></li>
-                                <li><a href="#">Tahaddart</a></li>
+								<li><a href="#" id="jbelMoussa">Jbel Moussa</a></li>
+                                <li><a href="#">Cirque de Jebha</a></li>
+                                <li><a href="#">Oued Tahaddart</a></li>
+                                <li><a href="#">Jbel Bouhachem</a></li>
+                                <li><a href="#">Brikcha</a></li>
+                                <li><a href="#">Ben Karrich</a></li>
+                                <li><a href="#">Cote Rhomara</a></li>
+                                <li><a href="#">Jbel Tizirane</a></li>
+                                <li><a href="#">Jbel Habib</a></li>
+                                <li><a href="#">Merja Bargha</a></li>
+                                <li><a href="#">Khemiss Sahel</a></li>
+                                <li><a href="#">Lagune Smir</a></li>
+                                <li><a href="#">Souk El Had</a></li>
+                                <li><a href="#">Cap Spartel</a></li>
+                                <li><a href="#">Perdicaris</a></li>
+                                <li><a href="#">Koudiet Taifour</a></li>
+                                <li><a href="#">Merja Oulad Skhar</a></li>
+                                <li><a href="#">PN Talassemtane</a></li>
+                                <li><a href="#">Marais du Bas Loukous</a></li>
+
 							</ul>
                         </li>
                     </ul>
@@ -210,6 +230,20 @@
 
     <!-- jQuery -->
     <script src="assets/js/jquery.min.js"></script>
+
+    <!-- jQuery Nice scroll bar -->
+    <script src="assets/plugins/jquery.nicescroll/jquery.nicescroll.js"></script>
+    <script>
+        $(document).ready(function(){
+
+            $(".main-sidebar").niceScroll({
+                scrollspeed: 20,
+                cursorcolor:"#b6dc3b",
+            });
+
+        });
+        
+    </script>
 
     <!-- BlockUI pour les opérations AJAX -->
     <script src="assets/js/jquery.blockUI.js"></script>
@@ -281,6 +315,11 @@
 
     <!-- Map js -->
     <script src="assets/js/map.js"></script>
+
+    <!-- Modules : Zones protégées JS -->
+    <script src="assets/js/jbelMoussa.js"></script>
+
+    
 
     
 </body>

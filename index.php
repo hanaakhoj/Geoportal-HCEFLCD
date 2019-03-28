@@ -1,3 +1,15 @@
+<?php
+session_start(); 
+include 'assets/php/db_connect.php';
+/*
+if(!isset($_SESSION["username"]))
+{
+ header("location:login/sign-in.php");
+
+}
+*/
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,6 +42,7 @@
     <!-- zoom min-->
     <link href="assets/plugins/leaflet-zoom-min/L.Control.ZoomMin.css" rel="stylesheet" type="text/css" />
 
+    <!-- La loupe-->
     <link href="assets/plugins/Leaflet.MagnifyingGlass/leaflet.magnifyingglass.css" rel="stylesheet" type="text/css"  />
     <link rel="stylesheet" href="assets/css/Control.MagnifyingGlass.css" />
     
@@ -67,11 +80,15 @@
     <!-- Animate.css -->
     <link rel="stylesheet" href="assets/plugins/animate/animate.css">
     
-    <!-- Animate.css -->
+    <!-- Map.css -->
     <link rel="stylesheet" href="assets/css/map.css">
 
     <!-- Module du Jbel Moussa -->
     <link rel="stylesheet" href="assets/css/jbelMoussa.css">
+
+    <!-- Responsive Leaflet Popup CSS-->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-responsive-popup@0.6.3/leaflet.responsive.popup.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-responsive-popup@0.6.3/leaflet.responsive.popup.rtl.css" />
 
     
 		
@@ -156,26 +173,35 @@
                         <li class="submenu">
                             <a  href="#"><i class="fas fa-map-marked-alt"></i></i><span> Zones protégées </span> <span class="menu-arrow"></span></a>
 							<ul class="list-unstyled">
-								<li><a href="#" id="jbelMoussa">Jbel Moussa</a></li>
-                                <li><a href="#">Cirque de Jebha</a></li>
-                                <li><a href="#">Oued Tahaddart</a></li>
-                                <li><a href="#">Jbel Bouhachem</a></li>
-                                <li><a href="#">Brikcha</a></li>
-                                <li><a href="#">Ben Karrich</a></li>
-                                <li><a href="#">Cote Rhomara</a></li>
-                                <li><a href="#">Jbel Tizirane</a></li>
-                                <li><a href="#">Jbel Habib</a></li>
-                                <li><a href="#">Merja Bargha</a></li>
-                                <li><a href="#">Khemiss Sahel</a></li>
-                                <li><a href="#">Lagune Smir</a></li>
-                                <li><a href="#">Souk El Had</a></li>
-                                <li><a href="#">Cap Spartel</a></li>
-                                <li><a href="#">Perdicaris</a></li>
-                                <li><a href="#">Koudiet Taifour</a></li>
-                                <li><a href="#">Merja Oulad Skhar</a></li>
-                                <li><a href="#">PN Talassemtane</a></li>
-                                <li><a href="#">Marais du Bas Loukous</a></li>
 
+                                <?php 
+                                // Exécution de la requête SQL
+                                $query = 'select id_aireprotegee, nom from aire_protegee;';
+                                $result = pg_query($query) or die('Échec de la requête : ' . pg_last_error());
+                                while ($row=pg_fetch_row($result)) { 
+                                
+                                ?>
+								<li>
+                                    <a href="#" id="<?php echo $aireprotegee =$row[0]; ?>" class="aireprotegee"><?php  echo $row[1] ?> <span class="menu-arrow"></span></a>
+                                    <ul>
+                                        <li><a href="#" id="<?php echo $culturel =$row[0]; ?>" class="culturel"><span>Domaines d'intérêts</span></a></li>
+                                        <li><a href="#"><span>Faune</span></a></li>
+                                        <li><a href="#"><span>Flore</span></a></li>
+                                        <li><a href="#"><span>Cours d'eaux</span></a></li>
+                                    </ul>
+                                </li>
+
+                                <?php } ?>
+
+							</ul>
+                        </li>
+
+                        <li class="submenu">
+                            <a  href="#"><i class="fas fa-satellite"></i><span> Données satellitaires </span> <span class="menu-arrow"></span></a>
+							<ul class="list-unstyled">
+                                <li><a href="#">Végétation</span></a></li>
+                                <li><a href="#">Glissements de terrain</span></a></li>
+                                <li><a href="#">Zones humides</span></a></li>
 							</ul>
                         </li>
                     </ul>
@@ -185,9 +211,9 @@
             </div>
         </div>
 
-        <!-- Modal HTML -->
+        <!-- Modal : Login -->
         <div id="loginModal" class="modal fade animated zoomIn" role="dialog">
-            <div class="modal-dialog modal-login ">
+            <div class="modal-dialog modal-login">
                 <div class="modal-content">
                     <div class="modal-header">
                         <div class="avatar">
@@ -215,6 +241,26 @@
                 </div>
             </div>
         </div> 
+
+        <!-- Modals : Visualisation des domaines d'intérêts  -->
+        <div id="culturelModal" class="modal fade animated zoomIn">
+          <div class="modal-dialog .modal-dialog-centered" role="document" style="height: 80%;">
+            <div class="modal-content" style="height: 80%;">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="defaultModalLabel">Domaines d'intérêts</h4>
+                </div>
+                <br>
+                <div class="modal-body" id="bodyCulturel" style="max-height: calc(100% - 120px); overflow-y: scroll;">
+                <div class="table-responsive" id="table_culturel"></div>  
+                
+                </div>
+                <br> <br> <br>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">Fermer</button>
+                </div>
+            </div>
+          </div>
+        </div>
 
         <!-- Footer -->
         <footer class="footer">
@@ -313,14 +359,19 @@
     <!-- Template js -->
     <script src="assets/js/pikeadmin.js"></script>
 
+    <!-- Responsive Leaflet Popup JS-->
+    <script src="https://unpkg.com/leaflet-responsive-popup@0.6.3/leaflet.responsive.popup.js"></script>
+
     <!-- Map js -->
     <script src="assets/js/map.js"></script>
 
     <!-- Modules : Zones protégées JS -->
-    <script src="assets/js/jbelMoussa.js"></script>
+    <script src="assets/js/culturel.js"></script>
 
-    
-
+    <?php 
+    //pg_free_result($result);
+    pg_close($dbconn);
+    ?>
     
 </body>
 </html>

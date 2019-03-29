@@ -130,7 +130,11 @@ img {
 	border: 1px solid rgba(43, 61, 81, 0.05);
 	margin: -1px;
 	padding: 0;
-	border-radius: 0;
+  border-radius: 0;
+  z-index:  10000000;
+  position: relative;
+  display: none;
+  
 }
 
 
@@ -277,7 +281,9 @@ a {
   margin-bottom: 0;
   padding: 0 10px;
   margin-left: 250px;
-  min-height: 50px;}
+  min-height: 50px;
+  position: relative;
+}
   
 .navbar-custom .nav-link {
     padding: 0 8px;
@@ -681,7 +687,9 @@ body.adminbody .main-sidebar.left {
 }
 
 .profile-dropdown {
-	width: 170px;
+  width: 170px;
+  position: relative;
+  z-index: 1000001;
 }
 
 .profile-dropdown i {

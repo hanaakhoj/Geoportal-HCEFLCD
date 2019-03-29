@@ -78,7 +78,7 @@ $(document).ready(function() {
                 data : data,
                 beforeSend: function(){ 
                     $("#error").fadeOut();
-                    $("#sumbitButton").html('<span class="glyphicon glyphicon-transfer"></span> &nbsp; Envoi...');
+                    $("#submitButton").html('<i class="fas fa-spinner fa-pulse"></i> &nbsp; Envoi...');
                     
                 },
                 success : function(response){ 
@@ -86,19 +86,18 @@ $(document).ready(function() {
                     if(response==1){
 
                         //location.replace("../index.php");
-                        alert ("hello hanoua")
 
-                    
                     } 
                     
                     if(response==0){
-                        alert(0);
+                        $("#submitButton").html('Connectez-vous');
+
                     } 
                     
                     else {                                    
                         $("#error").fadeIn(1000, function(){                        
                             $("#error").html('<div class="alert alert-danger"> &nbsp; &nbsp; <span class="glyphicon glyphicon-info-sign"></span> &nbsp; &nbsp; '+response+' !</div>');
-                            $("#sumbitButton").html('Se connecter');
+                            $("#submitButton").html('Connectez-vous');
                             
                         });
                     }

@@ -281,13 +281,13 @@ $(document).ready(function(){
 
         'OpenStreetMap': L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a>'
-        }),
+        })/*,
         'GoogleMapsHybrid' : L.gridLayer.googleMutant({type:'hybrid'
         }),
         'GoogleMapsTerrain' : L.gridLayer.googleMutant({type:'terrain'
         }),
         'GoogleMapsRoadmap' : L.gridLayer.googleMutant({type:'roadmap'
-        })
+        })*/
     };
 
     var overlays;
@@ -335,13 +335,13 @@ $(document).ready(function(){
         }),
         OpenStreetMap: L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a>'
-        }),
+        })/*,
         GoogleMapsHybrid : L.gridLayer.googleMutant({ type:'hybrid'
         }),
         GoogleMapsTerrain : L.gridLayer.googleMutant({type:'terrain'
         }),
         GoogleMapsRoadmap : L.gridLayer.googleMutant({type:'roadmap'
-        })
+        })*/
     };
 
     var rect1 = {color: "#b6dc3b", weight: 3};
@@ -419,24 +419,6 @@ $(document).ready(function(){
     var control = new L.Control.Bookmarks().addTo(map);
 
     // ZoomTo Aires protégées 
-    $("#jbelMoussa").click(function(){
-
-        //Jbel Moussa bounds
-        map.fitBounds([
-            [35.8566007773284, -5.48934309828071],
-            [35.93395552102, -5.38424766314635]
-        ]);
-    });
-
-    // ZoomTo Jebha 
-    $("#jebha").click(function(){
-
-        //Jebha bounds
-        map.fitBounds([
-            [35.2062118884169, -4.66786453745853],
-            [35.2250086142578, -4.64452074831373]
-        ]);
-    });
 
     var id_aireprotegee;
 

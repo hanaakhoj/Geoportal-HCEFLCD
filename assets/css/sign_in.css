@@ -645,7 +645,7 @@
     z-index: 100;
     max-width: 70%;
     background-color: #fff;
-    border: 1px solid #c80000;
+    border: 1px solid #fb483a;
     border-radius: 2px;
     padding: 4px 25px 4px 10px;
     top: 50%;
@@ -658,7 +658,7 @@
     pointer-events: none;
   
     font-family: Poppins-Regular;
-    color: #c80000;
+    color: #fb483a;
     font-size: 13px;
     line-height: 1.4;
     text-align: left;
@@ -678,7 +678,7 @@
     display: block;
     position: absolute;
     z-index: 110;
-    color: #c80000;
+    color: #fb483a;
     font-size: 16px;
     top: 50%;
     -webkit-transform: translateY(-50%);

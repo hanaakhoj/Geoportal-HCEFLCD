@@ -19,7 +19,7 @@
   position: relative;
 }
 .leaflet-bookmarks-control .bookmarks-icon {
-  width: 1em;
+  /*width: 1em;*/
   height: 0.8em;
   background: #777777;
 }
@@ -112,7 +112,7 @@
   float: right;
   margin-left: 6px;
   font-size: 1.5em;
-  color: #777777;
+  color: #000000;
   opacity: 0;
   z-index: 30;
   filter: alpha(opacity=0);

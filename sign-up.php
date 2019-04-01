@@ -1,3 +1,13 @@
+<?php  
+    session_start();
+    if(isset($_SESSION["email_admin"]))
+    {
+    header("location: admin.php");
+    }
+    elseif (isset($_SESSION["email_agent"])){
+
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -88,22 +98,40 @@
 						<span class="label-input100">Mot de passe</span>
 					</div>
 
-					<div class="flex-sb-m w-full p-t-3 p-b-32">
-						<div class="contact100-form-checkbox">
-							<input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
-							<label class="label-checkbox100" for="ckb1">
-								Me souvenir
-							</label>
-						</div>
+					<div class="flex-sb-m w-full p-t-3 p-b-10">
+						
+                        <div class="contact100-form-checkbox">
+                            <input class="input-checkbox100 test"  type="radio" name="admin_ckb" id="admin_ckb" value="admin_ckb" checked>
+                            <label class="label-checkbox100" for="admin_ckb">
+                                Administrateur
+                            </label>
+                        </div>
 
+                        <div class="contact100-form-checkbox">
+                            <input class="input-checkbox100 test" type="radio" name="agent_ckb" value="agent_ckb" id="agent_ckb">
+                            <label class="label-checkbox100" for="agent_ckb">
+                                Agent
+                            </label>
+                        </div>
+
+                        <div class="contact100-form-checkbox">
+                            <input class="input-checkbox100"  type="checkbox" name="rememberme" id="rememberme">
+                            <label class="label-checkbox100" for="rememberme">
+                                Me souvenir
+                            </label>
+                        </div>
+                        <!-- Mot de passe oublié 
 						<div>
 							<a href="#" class="txt1">
 								Mot de passe oublié ?
 							</a>
-						</div>
-					</div>
+                        </div>
+                        -->
+                    </div>
+                    <div class="flex-sb-m w-full p-t-3 p-b-32">
+                        
+                    </div>
 			
-
 					<div class="container-login100-form-btn">
 						<button class="login100-form-btn" type="submit" id="submitButton">
 							Connectez-vous

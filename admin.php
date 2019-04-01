@@ -1,13 +1,10 @@
 <?php
-session_start(); 
-include 'assets/php/db_connect.php';
-/*
-if(!isset($_SESSION["username"]))
-{
- header("location:login/sign-in.php");
+    session_start(); 
+    include 'assets/php/db_connect.php';
 
-}
-*/
+    if(!isset($_SESSION["email_admin"])){
+        header("location:sign-up.php");
+    }
 ?>
 
 <!DOCTYPE html>
@@ -113,6 +110,28 @@ if(!isset($_SESSION["username"]))
                             <i class="fas fa-sign-in-alt"></i>
                         </a>
                     </li>
+
+                    <li class="list-inline-item dropdown notif">
+                        <a class="nav-link dropdown-toggle nav-user" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                            <img src="assets/images/admin.png" alt="Profile image" class="avatar-rounded">
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
+                            <!-- item-->
+                            <div class="dropdown-item noti-title">
+                                <h5 class="text-overflow"><small>Bonjour, <?php echo $_SESSION['prenom'] ."&nbsp;".$_SESSION['nom'] ?> </small> </h5>
+                            </div>
+
+                            <!-- item-->
+                            <a href="pro-profile.html" class="dropdown-item notify-item">
+                                <i class="fa fa-user"></i> <span>Profile</span>
+                            </a>
+
+                            <!-- item-->
+                            <a href="assets/php/logout.php" class="dropdown-item notify-item">
+                                <i class="fa fa-power-off"></i> <span>Se déconnecter</span>
+                            </a>
+                        </div>
+                    </li>
                 </ul>
                 <ul class="list-inline menu-left mb-0">
                     <li class="float-left">
@@ -164,7 +183,11 @@ if(!isset($_SESSION["username"]))
             
                     <ul>
                         <li class="submenu">
-                                <a class="active" href="#" id="test"><i class="fa fa-fw fa-area-chart"></i><span>Généralités</span> </a>
+                                <a class="active" href="#" id="test"><i class="fa fa-fw fa-area-chart"></i><span>Tableau de bords</span> </a>
+                        </li>
+
+                        <li class="submenu">
+                                <a href="#" id="gestion_agents"><i class="fas fa-users-cog"></i><span>Gestion des agents</span> </a>
                         </li>
 
                         <li class="submenu">
@@ -358,6 +381,9 @@ if(!isset($_SESSION["username"]))
 
     <!-- Responsive Leaflet Popup JS-->
     <script src="https://unpkg.com/leaflet-responsive-popup@0.6.3/leaflet.responsive.popup.js"></script>
+
+    <!-- Map js -->
+    <script src="assets/js/admin.js"></script>
 
     <!-- Map js -->
     <script src="assets/js/map.js"></script>

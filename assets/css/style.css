@@ -602,7 +602,7 @@ body.adminbody .main-sidebar.left {
 
 .notif .noti-title {
     border-radius: 0;
-    background-color: #3492ea;
+    background-color: #6194c1;
     margin: 0;
     width: auto;
     padding: 8px 15px 12px 15px;
@@ -687,7 +687,7 @@ body.adminbody .main-sidebar.left {
 }
 
 .profile-dropdown {
-  width: 170px;
+  width: 190px;
   position: relative;
   z-index: 1000001;
 }

@@ -1,5 +1,20 @@
 
 $(document).ready(function() {
+    /*
+    $("#email_div").hide();
+    $("#password_div").hide();
+
+    $("#admin_login").click(function(){
+        $("#admin_login").hide();
+        $("#email_div").show();
+        $("#password_div").show();
+      });
+      */
+    
+    $('input.test').on('change', function() {
+        $('input.test').not(this).prop('checked', false);  
+    });
+
     "use strict";
 
     /*==================================================================
@@ -82,10 +97,11 @@ $(document).ready(function() {
                     
                 },
                 success : function(response){ 
+                    //alert(response);
 
                     if(response==1){
 
-                        //location.replace("../index.php");
+                        location.replace("admin.php");
 
                     } 
                     
@@ -93,6 +109,10 @@ $(document).ready(function() {
                         $("#submitButton").html('Connectez-vous');
 
                     } 
+
+                    if(response==2){
+                        alert("coucou simo agent");
+                    }
                     
                     else {                                    
                         $("#error").fadeIn(1000, function(){                        
@@ -108,5 +128,27 @@ $(document).ready(function() {
             return false;
         }
     });
+/*
+    $(".animsition").animsition({
+        inClass: 'fade-in',
+        outClass: 'fade-out',
+        
+        linkElement: '.animsition-link',
+        // e.g. linkElement: 'a:not([target="_blank"]):not([href^=#])'
+        loading: true,
+        loadingParentElement: 'body', //animsition wrapper element
+        loadingClass: 'animsition-loading',
+        unSupportCss: [
+          'animation-duration',
+          '-webkit-animation-duration',
+          '-o-animation-duration'
+        ],
+        //"unSupportCss" option allows you to disable the "animsition" in case the css property in the array is not supported by your browser.
+        //The default setting is to disable the "animsition" in a browser that does not support "animation-duration".
+        overlay : false,
+        overlayClass : 'animsition-overlay-slide',
+        overlayParentElement : 'body'
+      });
+*/
     
 });
